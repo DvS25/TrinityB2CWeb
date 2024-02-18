@@ -1,0 +1,296 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Order Tracking";
+}
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1920x258_1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-60"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">Our Tracking</h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        <h3 class="brk-white-font-color font__family-montserrat font__size-18 line__height-21 text-uppercase mb-15">See all our designs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hiddenorderid" value="@ViewBag.Ordertrackid" />
+
+<div class="container mb-40 mt-40" id="">
+    <div class="row">
+        <div class="col-sm-12 col-md-7">
+            <div class="mb-10">
+                <div class="borderorder pt-10 pb-10 trackbackcolor">
+                    <div class="col-sm-11">
+                        <span class="headertitle text-uppercase">Order Id  </span><span class="headertitle" id="headerorderid"></span><br />
+                        <span class="colorgray">Placed On  </span><span class="colorgray" id="headerplaceddate"></span><br />
+                    </div>
+                </div>
+                <div class="row bt-none pt-10 pb-10 m-0">
+                    <div class="col-sm-6" style="border-right: 1px dotted #ddd;">
+                        <div class="">
+                            @*<div class="mb-15">
+                                <div class="paddress">
+                                    <span class="font__size-18">Address Detail</span>
+                                </div>
+                            </div>*@
+                            <div class="pt-10 pb-10">
+                                <span class="font__size-18 line__height-2" id="addresspersonname"></span><br />
+                                <span class="font__family-open-sans address-detail" id="addresspersondetail"></span><br />
+                                <span class="font__family-open-sans address-detail">Mobile: <span id="addressmobileno"></span></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="total">
+                            @*<div class="mb-15">
+                                <div class="paddress">
+                                    <span class="font__size-18">Payment Detail</span>
+                                </div>
+                            </div>*@
+                            <div class="row">
+                                <p class="headertitle col-sm-6">Total price : </p>
+                                <p class="col-sm-6" style="float:right" id="paytotalprice"></p>
+                            </div>
+                            <div class="row">
+                                <p class="col-sm-6 headertitle">Delivery Charges : </p>
+                                <p class="col-sm-6" style="float:right" id="paydeliverycharge"></p>
+                            </div>
+                            <div class="row" id="giftchargediv">
+                                <p class="col-sm-6 headertitle">Gift Charges : </p>
+                                <p class="col-sm-6" style="float:right" id="paygiftamount"></p>
+                            </div>
+                            <div class="row">
+                                <p class="col-sm-6 headertitle">Paid Amount : </p>
+                                <p class="col-sm-6" style="float:right" id="paypaidamount"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="mb-10" id="orderitemdiv">
+                    <div class="borderorder pt-10 pb-10 trackbackcolor">
+                        <div class="col-sm-11">
+                            <span class="headertitle text-uppercase">Order Items  </span>
+                        </div>
+                    </div>
+                    <div id="bindorderitems"></div>
+                </div>
+                <div class="mb-10" id="cancelorderitemsbind"></div>
+                <div class="mb-10" id="returnorderitemsbind"></div>
+            </div>
+        <div class="col-sm-5">
+            <div class="mb-10" id="orderitemdiv">
+                <div class="borderorder pt-10 pb-10 trackbackcolor">
+                    <div class="col-sm-11">
+                        <span class="headertitle text-uppercase">Order Tracking  </span>
+                    </div>
+                </div>
+                <div class="timelinestatus bt-none" id="ordertracking"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="mt-40">
+    <section class="page-section mt-40 mb-40">
+        <div class="container">
+            <div class="timeline">
+                <div class="timeline__wrap">
+                    <div class="timeline__items">
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Placed</h2>
+                                <p>30 Oct 2018</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Packed</h2>
+                                <p>31 Oct 2018</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Dispatching</h2>
+                                <p>31 Oct 2018</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Dispatching</h2>
+                                <p>31 Oct 2018</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Dispatching</h2>
+                                <p>31 Oct 2018</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2>Deliverd</h2>
+                                <p>01 Nov 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>*@
+<link href="~/Content/vendor/horizontal-timeline/timeline.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Content/vendor/horizontal-timeline/timeline.min.js"></script>
+    <script src="~/Scripts/Order/OrderTracking.js"></script>
+    <script id="DDLordertracking" type="text/x-jsrender">
+        <div class="containertime">
+            <div class="timelinecontent">
+                <h5>{{>status}} </h5>
+                <h6>{{>entrydate}}</h6>
+            </div>
+        </div>
+    </script>
+    <script id="Dataorderitems" type="text/x-jsrender">
+        <div class="bt-none">
+            <div class="col-sm-12">
+                <div class="row mainitemdiv">
+                    <div class="col-sm-2 pt-20 pb-20">
+                        <img src="{{>imagepath}}" class="borderorder itemimage" alt="alt">
+                    </div>
+                    <div class="col-sm-10 pt-20 pb-20">
+                        <span class="headertitle font__size-20">{{>designno}}</span>
+
+                        <input id="iprrel{{>custorderitemid}}" type="hidden" value="{{>total_amt}}" />
+                        <span class="designprice  font__size-16 " style="font-weight: 600;float:right" id="designprice{{>custorderitemid}}" data-currency="{{>currencytype}}">{{>total_amt}}</span><br />
+                        <span class="headertitle">Size : </span><span class="colorgray font__size-13">{{>size}}</span><span class="headertitle pl-10">Qty : </span><span class="colorgray font__size-13">{{>total_qty}}</span><br />
+                        <span class="headertitle">Metal : </span><span class="colorgray font__size-13"><span id="gpurity{{>metal_purity}}">{{>metal_purity}}</span> <span id="gcolor">{{>metal_color}}</span></span><br />
+                        <span class="headertitle">Diamond : </span><span class="colorgray font__size-13"> <span>{{>diamond_purity}}/{{>diamond_color}}</span></span><br />
+                        @*<span class="headertitle">CStone : </span><span class="colorgray font__size-13"> CS / 0 pcs / 2.6 cts</span><br />*@
+                        {{if personalizemsg != "" && personalizemsg != "[object Object]"}}
+                        <span class="headertitle">Remark : </span>
+                        <span class="colorgray font__size-13"> {{>personalizemsg}}</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id="Datacancelorderitems" type="text/x-jsrender">
+        <div class="row borderorder pt-10 pb-10 m-0 trackbackcolor">
+            <div class="col-sm-6">
+                <span class="headertitle text-uppercase">Cancelled Items </span><br />
+                <span class="colorgray">Cancelled On  </span><span class="colorgray" id="">{{>canceldate}}</span><br />
+                <span class="statuscss">{{>orderstatus}}</span>
+            </div>
+            <div class="col-sm-6 price">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="colorgray" style="float:right">Refundable Amount :</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="font__size-16 " id="finalcanceldesignprice" style="font-weight: 600;float:right"></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+      {{for cancelorderdetail.orderdetails}}
+        <div class="row bt-none m-0">
+            <div class="col-sm-12">
+                <div class="row mainitemdiv">
+                    <div class="col-sm-2 pt-20 pb-20">
+                        <img src="{{>imagepath}}" class="borderorder itemimage" alt="alt">
+                    </div>
+                    <div class="col-sm-10 pt-20 pb-20">
+                        <span class="headertitle font__size-20">{{>designno}}</span>
+                        
+                        <input id="iprrelcancel{{>custorderitemid}}" type="hidden" value="{{>total_amt}}" />
+                        <span class="canceldesignprice  font__size-16 " id="canceldesignprice{{>custorderitemid}}" data-currency="{{>currencytype}}" style="font-weight: 600;float:right">{{>total_amt}}</span>
+                        <br />
+                        <span class="headertitle">Size : </span><span class="colorgray font__size-13">{{>size}}</span><span class="headertitle pl-10">Qty : </span><span class="colorgray font__size-13">{{>total_qty}}</span><br />
+                        <span class="headertitle">Metal : </span><span class="colorgray font__size-13"><span id="gpurity{{>metal_purity}}">{{>metal_purity}}</span> <span id="gcolor">{{>metal_color}}</span></span><br />
+                        <span class="headertitle">Diamond : </span><span class="colorgray font__size-13"> <span>{{>diamond_purity}}/{{>diamond_color}}</span></span><br />
+                        @*<span class="headertitle">CStone : </span><span class="colorgray font__size-13"> CS / 0 pcs / 2.6 cts</span><br />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/for}}
+        <div class="row bt-none pt-10 pb-10 m-0">
+            <div class="col-sm-12">
+                <span class="colorgray">{{>orderdescription}}</span>
+            </div>
+        </div>
+    </script>
+    <script id="Datareturnorderitems" type="text/x-jsrender">
+        <div class="row borderorder pt-10 pb-10 trackbackcolor">
+            <div class="col-sm-6">
+                <span class="headertitle text-uppercase">Returned Items </span><br />
+                <span class="colorgray">Returned On  </span><span class="colorgray" id="">{{>returndate}}</span><br />
+                <span class="statuscss">{{>orderstatus}}</span>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="colorgray" style="float:right">Return charges :</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="font__size-16 " id="finalreturndesigncharge" style="font-weight: 600;float:right"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="colorgray" style="float:right">Refundable Amount :</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="font__size-16 " id="finalreturndesignprice" style="font-weight: 600;float:right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{for returnorderdetail.orderdetails}}
+        <div class="row bt-none">
+            <div class="col-sm-12">
+                <div class="row mainitemdiv">
+                    <div class="col-sm-2 pt-20 pb-20">
+                        <img src="{{>imagepath}}" class="borderorder itemimage" alt="alt">
+                    </div>
+                    <div class="col-sm-10 pt-20 pb-20">
+                        <span class="headertitle font__size-20">{{>designno}}</span>
+
+                        <input id="iprrelreturn{{>custorderitemid}}" type="hidden" value="{{>total_amt}}" />
+                        <span class="returndesignprice  font__size-16 " id="returndesignprice{{>custorderitemid}}" data-currency="{{>currencytype}}" style="font-weight: 600;float:right">{{>total_amt}}</span>
+                        <br />
+                        <span class="headertitle">Size : </span><span class="colorgray font__size-13">{{>size}}</span><span class="headertitle pl-10">Qty : </span><span class="colorgray font__size-13">{{>total_qty}}</span><br />
+                        <span class="headertitle">Metal : </span><span class="colorgray font__size-13"><span id="gpurity{{>metal_purity}}">{{>metal_purity}}</span> <span id="gcolor">{{>metal_color}}</span></span><br />
+                        <span class="headertitle">Diamond : </span><span class="colorgray font__size-13"> <span>{{>diamond_purity}}/{{>diamond_color}}</span></span><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/for}}
+        <div class="row bt-none pt-10 pb-10">
+            <div class="col-sm-12">
+                <span class="colorgray">{{>orderdescription}}</span>
+            </div>
+        </div>
+    </script>
+    <script>
+        timeline(document.querySelectorAll('.timeline'), {
+            forceVerticalMode: 700,
+            mode: 'horizontal',
+            verticalStartPosition: 'left',
+            visibleItems: 5
+        });
+    </script>
+}

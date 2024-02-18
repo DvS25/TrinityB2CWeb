@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Wishlist";
+}
+
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-40"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">Our Wishlist</h2>
+                        <h3 class="brkwhite">Check all our Designs</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-wrapper">
+    <main class="main-container">
+        <div class="container mt-40 mb-10">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-xl-12 order-xs-2 order-lg-1">
+                    <div class="">
+                        <div class="row" id="wishlistdata">
+
+                            @*<div class="col-12 col-xl-6 col-lg-6 col-xs-12">
+                                    <div class="brk-sc-card-horizontal mb-30" data-brk-library="component__shop_cards,fancybox">
+                                        <div class="row no-gutters">
+                                            <div class="col-12 col-sm-6 col-md-5 col-lg-5">
+                                                <div class="brk-sc-card-horizontal__img-container d-flex align-items-center justify-content-center pl-15 pr-15">
+                                                    <img src="~/Content/img/gallery/TRF2529.jpg" alt="alt" class="brk-sc-card-horizontal__img"> <span class="brk-sc-card-horizontal__overlay brk-bg-gradient-bottom-92"></span>
+                                                    <div class="flip-box__split-actions flip-box__split-actions_small">
+                                                        <a href="#0" class="add-cart d-flex align-items-center justify-content-center">
+                                                            <i class="fal fa-shopping-cart"></i>
+                                                        </a>
+                                                        <a href="@Url.Action("ProductDetail","Product")" class="add-search d-flex align-items-center justify-content-center fancybox">
+                                                            <i class="fal fa-eye"></i>
+                                                        </a>
+                                                        <a href="#0" class="add-cart d-flex align-items-center justify-content-center">
+                                                            <i class="fal fa-trash-alt"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-7 col-lg-7">
+                                                <div class="brk-sc-card-horizontal__about d-flex flex-column">
+                                                    <div class="brk-sc-card-horizontal__main-info d-flex align-items-center flex-wrap brk-sc-card-horizontal__description">
+                                                        <div class="d-flex flex-column mr-auto">
+                                                            <a href="javascript:void(0)" class="font__family-montserrat font__size-16 font__weight-bold line__height-16 mb-1">The Yana Ring</a>
+                                                            <div class="font__family-montserrat font__size-14 ml-1">
+                                                                <span class="relateddesignpricedis ld-price font__size-16" id="relateddesignpricedis"></span>
+                                                                <input id="disiprrel" type="hidden" value="12345" />
+
+                                                                <span class="relateddesignprice font__weight-semibold font__size-18 oldpricecss" id="relateddesignprice"></span>
+                                                                <input id="iprrel" type="hidden" value="5678976" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-10 mb-10">
+                                                            <div class="brk-rating" data-brk-library="component__elements">
+                                                                <div class="brk-rating__layer"><i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i></div>
+                                                                <div class="brk-rating__imposition" style="width: 80%">
+                                                                    <div class="visible"><i class="fas fa-star brk-base-font-color"></i> <i class="fas fa-star brk-base-font-color"></i> <i class="fas fa-star brk-base-font-color"></i> <i class="fas fa-star brk-base-font-color"></i> <i class="fas fa-star brk-base-font-color"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <span class="headertitle">Size : </span><span class="colorgray">20</span><br />
+                                                            <span class="headertitle">Metal : </span><span class="colorgray">18KT ROSE GOLD 6.75gm</span><br />
+                                                            <span class="headertitle">Diamond : </span><span class="colorgray"> VVS/FG 25 pcs / 0.61cts</span><br />
+                                                            <span class="headertitle">CStone : </span><span class="colorgray"> CS / -- 11 pcs / 0.12 cts</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <div class="text-center mb-30" id="emptywishlist" style="display:none">
+                            <img src="~/Content/img/wishempty.jpg" style="width:25%;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@*<link href="~/Content/css/components/shop-components-cards.css" rel="stylesheet" />*@
+@section Scripts{
+    <script src="~/Scripts/Product/WishList.js"></script>
+    <script id="Databindwishlist" type="text/x-jsrender">
+        <div class="col-12 col-xl-6 col-lg-6 col-xs-12">
+            <div class="brk-sc-card-horizontal mb-33" data-brk-library="fancybox">
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-5 col-md-5 col-lg-4">
+                        <div class="brk-sc-card-horizontal__img-container d-flex align-items-center justify-content-center pl-15 pr-15">
+                            <img src="{{>imagepath}}" alt="alt" class="brk-sc-card-horizontal__img"> <span class="brk-sc-card-horizontal__overlay brk-bg-gradient-bottom-92"></span>
+                            <div class="flip-box__split-actions flip-box__split-actions_small">
+                                <a href="#0" onclick="addtocartfromwishlist('{{>wishlistid}}')" class="add-cart d-flex align-items-center justify-content-center">
+                                    <i class="fal fa-shopping-cart"></i>
+                                </a>
+                                <a href="#0" onclick="showproductdetail('{{>designno}}')" class="add-search d-flex align-items-center justify-content-center fancybox">
+                                    <i class="fal fa-eye"></i>
+                                </a>
+                                <a href="#0" onclick="daletetowishlist('{{>wishlistid}}')" class="add-cart d-flex align-items-center justify-content-center">
+                                    <i class="fal fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-7 col-md-7 col-lg-8">
+                        <div class="brk-sc-card-horizontal__about d-flex flex-column">
+                            <div class="brk-sc-card-horizontal__main-info d-flex align-items-center flex-wrap brk-sc-card-horizontal__description">
+                                <div class="row" style="width:100%">
+                                    <div class="col-sm-6 col-6">
+                                        <a href="javascript:void(0)" class="font__family-montserrat font__size-16 font__weight-bold line__height-16 mb-1" id="designno{{>wishlistid}}">{{>designno}}</a>
+                                    </div>
+                                    <div class="col-sm-6 col-6 pr-0" style="float:right">
+                                        <div>
+                                            <div class="brk-rating star" data-brk-library="component__elements">
+                                                <div class="brk-rating__layer"><i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i></div>
+                                                <div class="brk-rating__imposition" style="width: {{>ratestar}}%">
+                                                    <div class="visible"><i class="fas fa-star y-clr"></i> <i class="fas fa-star y-clr"></i> <i class="fas fa-star y-clr"></i> <i class="fas fa-star y-clr"></i> <i class="fas fa-star y-clr"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-12 p-0 m-22">
+                                            <span class="relateddesignpricedis ld-price font__size-16 mr-10" id="relateddesignpricedis{{>designno}}"></span>
+                                            <input id="disiprrel{{>designno}}" type="hidden" value="{{>price}}" />
+
+                                            {{if oldprice != price}}
+                                            <span class="relateddesignprice font__weight-semibold font__size-16 oldpricecss" id="relateddesignprice{{>designno}}"></span>
+                                            <input id="iprrel{{>designno}}" type="hidden" value="{{>oldprice}}" />
+                                            {{/if}}
+                                        </div>
+
+                                        <span class="headertitle">Size : </span><span class="colorgray">{{>psize}}</span><br />
+                                        <span class="headertitle">Metal : </span><span class="colorgray">{{>gpurity}} {{>gcolor}} {{>metaltype}} {{>goldwgt}}gm</span><br />
+                                        <span class="headertitle">Diamond : </span><span class="colorgray"> {{>dquality}}/{{>dcolor}} {{>diamondpcs}} pcs / {{>diamondweight}}cts</span><br />
+                                        {{if stoneweight > 0}}
+                                        <span class="headertitle">CStone : </span><span class="colorgray"> {{>stonecode}} / {{>stonecolor}} {{>stonepcs}} pcs / {{>stoneweight}} cts</span>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+}

@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html class="brk-preloader" lang="en" data-brk-skin="brk-blue.html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Trinity Jewells</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/img/Logo/favicon.png">
+    @Styles.Render("~/Content/css")
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    @*<script async src="https://www.googletagmanager.com/gtag/js?id=@System.Configuration.ConfigurationManager.AppSettings["googleAnalyticsKey"]"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', '@System.Configuration.ConfigurationManager.AppSettings["googleAnalyticsKey"]');
+        </script>*@
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167749305-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-167749305-1');
+    </script>
+
+
+</head>
+<body class="">
+    <div class="loadingtrinity"></div>
+    <div class="brk-header-mobile">
+        <div class="brk-header-mobile__open"><span></span></div>
+        <div class="brk-header-mobile__logo"><a href="@Url.Action("Index","Home")"><img src="~/Content/img/ProjectImg/trinity logo.png" alt="" style="max-width: 25%;"></a></div>
+    </div>
+    <header class="brk-header brk-header_style-1 brk-header_skin-1 position-fixed d-flex flex-column brk-header_color-dark position-fixed" data-logo-src="/Content/img/ProjectImg/trinity logo.png" data-bg-mobile="img/brk-bg-mobile-menu.jpg" data-brk-library="component__header">
+        <div class="brk-header__top-bar order-lg-1 order-2 font__family-montserrat brk-header__top-bar_scroll" style="height: 46px;">
+            <div class="brk-header__title font__family-montserrat font__weight-bold">Contact Us</div>
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 align-self-lg-stretch text-left">
+                        <div class="brk-header__element brk-header__element_skin-2 brk-header__item"><a href="#0" class="brk-header__element--wrap"><i class="fa fa-phone" style="color:white;"></i> <span class="brk-header__element--label font__weight-semibold">0261-4000-800</span></a></div>
+                        <div class="brk-header__element brk-header__element_skin-2 brk-header__item"><a href="#0" class="brk-header__element--wrap"><i class="fa fa-envelope" style="color:white;"></i> <span class="brk-header__element--label font__weight-medium">info@trinityjewells.com</span></a></div>
+                    </div>
+                    <div class="col-lg-6 align-self-lg-stretch text-left text-lg-right">
+                        <div class="brk-mini-cart brk-header__item">
+                            <div class="brk-mini-cart__open">
+                                <i class="fa fa" aria-hidden="true"></i>
+                                <span class="brk-mini-cart__label font__family-montserrat font__weight-medium text-uppercase letter-spacing-60 font__size-10 opacity-80"><i class="fas fa-shopping-cart" aria-hidden="true"></i>My cart</span>
+                                <span class="brk-mini-cart__title">Shopping Cart</span>
+                                <span class="brk-mini-cart__count brk-mini-cart__count_skin-1 brk-mini-cart__count_white" id="cart-total"></span>
+                            </div>
+                            <div class="brk-mini-cart__menu">
+                                <div class="brk-mini-cart__header"><span class="font__family-montserrat font__weight-bold font__size-18">Your Cart</span></div>
+                                <div class="brk-mini-cart__products" id="datatopthreecart"></div>
+                                <div class="brk-mini-cart__links" id="btncartprocessdiv">
+                                    <div class="brk-mini-cart__links--wrap"><a class="brk-mini-cart__links--cart" href="@Url.Action("CartList", "Product")"><i class="fa fa-shopping-basket"></i> Cart</a> <a class="brk-mini-cart__links--checkout" href="@Url.Action("CartList", "Product")">Proceed to checkout <i class="far fa-arrow-right"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brk-mini-cart brk-header__item" id="divofnotifiy">
+                            <div class="brk-mini-cart__open">
+                                <i class="fa fa-bell" style="color:dodgerblue;" aria-hidden="true"></i>
+                                <span class="count-1 brk-mini-cart__count brk-mini-cart__count_skin-1 brk-mini-cart__count_white" id="notification-total"></span>
+                            </div>
+                            <div class="brk-mini-cart__menu">
+                                <div class="brk-mini-cart__header"><span class="font__family-montserrat font__weight-bold font__size-18">Notification</span></div>
+                                <div class="brk-mini-cart__products" id="datanotificationhere" style="overflow-y:auto;max-height:384px"></div>
+                                <div class="brk-mini-cart__links" id="btnviewmorenotificationdiv" style="height: 62px;">
+                                    <button class="btndetails" type="button" onclick="Viewmorenotification()" style="float:right">View More</button>
+                                    @*<div class="brk-mini-cart__links--wrap"><a class="brk-mini-cart__links--cart" href="" style="position:relative !important;">View More</a></div>*@
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hiddennoti_row_no" />
+                        <div class="brk-header__element brk-header__element_skin-2 brk-header__item"><a href="javascript:void(0)" onclick="Openwishlist()" class="brk-header__element--wrap"><i class="fa fa-heart" style="color:red;"></i> <span class="brk-header__element--label font__weight-medium">My wishlist</span> <span class="brk-header__compare brk-header__compare_white brk-header__compare_skin-1" id="wishlist-total"></span></a></div>
+                        <div class="brk-header__element brk-header__element_skin-2 brk-header__item dropdown" id="ddl_currency">
+                            <a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle brk-header__element--wrap">
+                                <img id="Selected_CurrencyImg" src="" />
+                                <span id="Selected_Currency" class="brk-header__element--label font__weight-medium">
+                                </span>
+                                <input type="hidden" id="Sel_CurrLang" value="" />
+                            </a>
+                            <ul class="dropdown-menu">
+                                @*<li class="dropdown-item">INR</li>
+                                    <li class="dropdown-item">USD</li>*@
+                            </ul>
+                        </div>
+                        <div class="brk-header__element brk-header__element_skin-2 brk-header__item">
+                            @if (@TrinityB2CWeb.CommonClasses.SessionFacade.UserSession == null)
+                            {
+                                <div class="brk-header__element brk-header__element_skin-2 brk-header__item log" id="layoutlogin">
+                                    <a data-toggle="modal" class="brk-header__element--wrap">
+                                        <i class="fa fa-user" style="color:#55acee;"></i> <span class="brk-header__element--label font__weight-medium">Login</span>
+                                    </a>
+                                </div>
+                            }
+
+                            <input type="hidden" id="hiddenloginid" value="" />
+                            <div class="brk-header__element brk-header__element_skin-2 brk-header__item log" id="layoutfullnamediv" style="display:none;">
+                                <div class="brk-header__element--wrap">
+                                    <div class="brk-search brk-header__item" style="width: 100%;">
+                                        <i class="fa fa-user" style="color:#55acee;position: relative;left: 0;padding-bottom: 15px;"></i>
+                                        <span class="brk-header__element--label font__weight-medium pt-10" id="userfullnametxt" style="padding-left: 10px;"></span>
+                                        <div class="brk-search__block boxwidth">
+                                            <div class="brk-search__header accheader"><a href="@Url.Action("MyAccount","Home")"><span class="icondropdwn"><i class="fal fa-user font__size-12"></i></span><span class="font__family-montserrat font__size-14">My Account</span></a></div>
+                                            <div class="brk-search__header accheader"><a href="@Url.Action("OrderHistory","Order")"><span class="icondropdwn"><i class="fal fa-archive font__size-12"></i></span><span class="font__family-montserrat font__size-14">My Orders</span></a></div>
+                                            <div class="brk-search__header accheader"><a href="@Url.Action("Logout","Login")"><span class="icondropdwn"><i class="fal fa-sign-out-alt"></i></span><span class="font__family-montserrat font__size-14">Logout</span></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="brk-header__main-bar brk-header_border-top-dark order-lg-2 order-1" style="height: 72px;">
+            <div class="container-fluid">
+                <div class="wrapper"></div>
+                <div class="row align-items-center">
+                    <div class="col-lg-2 align-self-lg-center d-none d-lg-block ml-10">
+                        <a href="@Url.Action("Index","Home")" class="brk-header__logo brk-header__item">
+                            @*<img id="show-head"  class="brk-header__logo-1 lazyload" src="/Content/img/ProjectImg/NAME_PLATE07.png" data-src="/Content/img/ProjectImg/NAME_PLATE07.png" alt="alt"">*@
+                            <img class="brk-header__logo-2 lazyload" src="~/Content/img/ProjectImg/trinity logo.png" data-src="/Content/img/ProjectImg/trinity logo.png" alt="alt" style="max-width: 78%;">
+                            @*<img class="sml-logo" src="/Content/img/Logo/onlylogo black.png" />*@
+                        </a>
+                    </div>
+                    <div class="col-lg align-self-lg-stretch text-lg-center">
+                        <nav class="brk-nav brk-header__item" id="Menulistul"></nav>
+                    </div>
+                    <div class="col-lg-3 align-self-lg-stretch text-lg-right search" style="position:relative">
+                        <img src="~/Content/img/searchicon.png" id="input_img">
+                        <input type="text" class="searchtext" id="mainsearchbox" name="search" placeholder="Search.." onkeyup="Loginview.AutosuggestSearch();" onfocusout="Loginview.Searchfocusout()">
+                        @*<div class="brk-header__title font__family-montserrat font__weight-bold">Info</div>
+                            <div class="brk-search brk-header__item">
+                                <div class="brk-search__open">
+
+                                    <i class="fal fa-search" aria-hidden="true"></i>
+                                    <div class="brk-search__title">Search website</div>
+                                </div>
+                                <div class="brk-search__block">
+                                    <div class="brk-search__header"><span class="font__family-montserrat font__weight-bold font__size-18">Search</span></div>
+                                    <form class="brk-search__form" role="search" method="get" action="#"><input name="s" maxlength="50" type="search" value="" placeholder="Enter search text"> <button type="submit"><i class="fas fa-search"></i></button></form><span class="brk-search__close font__family-montserrat font__weight-medium">Close <i class="fas fa-times"></i></span>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!--Login Modal -->
+    <div id="LoginModal" class="modal fade" role="dialog" data-backdrop="static" style="opacity:1">
+        <div class="modal-dialog modal-lg" style="margin-top:180px;">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" id="btnloginmodalclose">&times;</button>
+                @Html.Partial("~/Views/Login/Login.cshtml")
+            </div>
+
+        </div>
+    </div>
+    @RenderBody()
+
+    <footer class="brk-footer position-relative" data-brk-library="component__footer,twitter_init">
+        <div class="brk-footer__wrapper mb-1 pt-md-90 border-bottom-3 brk-border-color-light" style="background-image: url()">
+            <div class="brk-abs-bg-overlay brk-base-gradient-27"></div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-12 col-md-6 col-sm-6">
+                        <h6 class="brk-black-font-color mb-40 mb-md-25 font__family-montserrat font__weight-semibold font__size-24 text-center text-sm-left">Useful Links</h6>
+                        <hr class="horiz-line mt-0 mb-35">
+                        <article class="brk-tiles-simple mb-20 lazyload" data-brk-library="component__tiles">
+                            <div class="brk-tiles-simple__content pl-0 pt-0 foootercolor">
+
+                                <a href="@Url.Action("AboutUs","Home")">- About Us</a>
+                                @*<a href="@Url.Action("ContactUs","Home")">Contact Us</a>*@
+                                <a href="@Url.Action("PrivacyPolicy","Home")">- Privacy Policy</a>
+                                <a href="@Url.Action("TermsAndCondition","Home")">- Terms And Condition</a>
+                                <a href="@Url.Action("Guidline","Home")">- Guidline</a>
+                                <a href="@Url.Action("FAQ","Home")">- FAQ</a>
+                                <a href="@Url.Action("DownloadApp","Home")">- Download App</a>
+                                <div class="col-md-12 downloadapp">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <span class="app-icon">
+                                                <span class="googleplay1">
+                                                    <a href="https://apps.apple.com/in/app/trinityfactoryoutlet/id1459963781" target="_blank">
+                                                        <img src="~/Content/img/ProjectImg/Appstore.png" class="appstoreing img-responsive mob-nomarg" />
+                                                    </a>
+                                                </span>
+                                            </span>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="app-icon">
+                                                <span class="googleplay1">
+                                                    <a href="https://play.google.com/store/apps/details?id=com.TrinityJewelles.TrinityB2C&hl=en" target="_blank">
+                                                        <img src="~/Content/img/ProjectImg/GooglePlay.png" class="img-responsive" />
+                                                    </a>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="horiz-line mt-0 mb-35">
+                        </article>
+                    </div>
+                    <div class="col-xl-3 col-12 col-md-6 col-sm-6 find">
+                        <h6 class="brk-black-font-color mb-25 font__family-montserrat font__weight-semibold font__size-24 text-center text-sm-left mt-xs-20">Find Us</h6>
+                        <hr class="horiz-line mt-0 mb-35">
+                        <p class="font__family-open-sans font__weight-bold font__size-14 brk-black-font-color text-sm-left text-center"><i class="icon text-middle fa fa-envelope line__height-24"></i> <span class="show-inline-block">info@trinityjewells.com</span></p>
+                        <p class="font__family-open-sans font__weight-bold font__size-14  brk-black-font-color text-sm-left text-center"><i class="icon text-middle fa fa-phone line__height-24  line__height-24"></i><span>0261-4000-800</span></p>
+                        <p class="font__family-open-sans font__weight-bold font__size-14  brk-black-font-color text-sm-left text-center"><i class="icon text-middle fas fa-mobile line__height-24"></i> <span>+91 88225 22722</span></p>
+                        <a class="followus" href="javascript:void(0)" style="font-weight:400;">Follow Us : </a>
+                        <a target="_blank" href="https://www.instagram.com/trinityfactoryoutlet/" class="brk-social-links__item"><i class="fab fa-instagram" style="color:#000"></i> </a>
+                        <a target="_blank" href="https://www.facebook.com/Trinity-Jewells-1386311611621562/" class="brk-social-links__item"><i class="fab fa-facebook-f" style="color:#000"></i> </a>
+                    </div>
+                    <div class="col-xl-3 col-12 col-md-6 col-sm-6">
+
+
+                        <h6 class="brk-black-font-color mb-40 mb-md-25 font__family-montserrat font__weight-semibold font__size-24 text-center text-sm-left mt-xs-20">Instagram</h6>
+                        <div id="instgramdiv" class="widget-content js-zoom-gallery"></div>
+                    </div>
+                    <div class="col-xl-3 col-12 col-md-6 col-sm-6">
+                        <h6 class="brk-black-font-color mb-40  mb-md-25 font__family-montserrat font__weight-semibold font__size-24 text-center text-sm-left">Facebook</h6>
+                        <section class="footer-section">
+                            <div id="fb-root"></div>
+                            <div class="fb-page" data-href="https://www.facebook.com/Trinity-Jewells-1386311611621562/"
+                                 data-tabs="timeline"
+                                 data-height="330"
+                                 data-width="250"
+                                 data-small-header="false"
+                                 data-adapt-container-width="true"
+                                 data-hide-cover="false"
+                                 data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/Trinity-Jewells-1386311611621562/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Trinity-Jewells-1386311611621562/">Trinity</a></blockquote>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="footer_bottom_outer" style="position: fixed;bottom: 0;width: 100%;background: white;z-index: 99;">
+                        <div class="container-fluid" style="background: #F7F7F7;">
+                            <div class="row">
+                                @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fixfooter" style="background: #F7F7F7;">*@
+                                <div class="col-lg-8 footertext" style="margin-top:10px;">
+                                    <p>
+                                        Trinity Jewells &copy; 2018. Made with  <i class="fa fa-heart" style="margin-top:5px;"></i> by <a target="_blank" href="http://www.actosoft.in/">Actosoft</a>&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 footericon" style="margin-top:10px;">
+                                    <a target="_blank" href="https://www.facebook.com/Trinity-Jewells-1386311611621562/" class="brk-social-links__item"><i class="fab fa-facebook-f" style="color:#000"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a target="_blank" href="https://www.instagram.com/trinityfactoryoutlet/" class="brk-social-links__item"><i class="fab fa-instagram" style="color:#000"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Login/Login.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload = function () { }; handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+
+    <script id="bindtopthreecart" type="text/x-jsrender">
+        <div class="brk-mini-cart__product">
+            <div class="brk-mini-cart__product--img"><img class="lazyload" src="{{>imagepath}}" data-src="{{>imagepath}}" alt="alt"></div>
+            <div class="brk-mini-cart__product--title-price">
+                <a href="javascript:void(0)">
+                    <h4 class="font__family-montserrat font__size-16 line__height-21 font__weight-semibold text-truncate">{{>designno}}</h4>
+                </a>
+                @*<span class="brk-mini-cart__product--old-price font__family-montserrat">₹1,22,000</span>
+                    <span class="brk-mini-cart__product--price font__family-montserrat">₹1,22,000</span>*@
+                {{if oldprice != price}}
+                <span class="designtopprice brk-mini-cart__product--old-price font__family-montserrat" id="designtopprice{{>cartid}}"></span>
+                <input id="iprreltop{{>cartid}}" type="hidden" value="{{>price}}" />
+                {{/if}}
+
+                <span class="designpricedistop brk-mini-cart__product--price font__family-montserrat" id="designpricedistop{{>cartid}}"></span>
+                <input id="disiprreltop{{>cartid}}" type="hidden" value="{{>oldprice}}" />
+
+            </div>
+            @*<div class="brk-quantity">
+                    <span class="brk-quantity__arrows minus"></span>
+                    <input class="brk-quantity__value" name="quantity" type="text" value="2">
+                    <span class="brk-quantity__arrows plus"></span>
+                </div>*@
+            <div>
+                <a class="cursorcss" onclick="topDecreasequantity('{{>cartid}}')" href="javascript:void(0)"><i class="fa fa-caret-left l-h-0" aria-hidden="true"></i></a>
+                <span id="topquantitytotal{{>cartid}}" class="pl-10 pr-10">{{>quantity}}</span>
+                <a class="cursorcss" onclick="topIncreasequantity('{{>cartid}}')" href="javascript:void(0)"><i class="fa fa-caret-right l-h-0" aria-hidden="true"></i></a>
+            </div>
+            <a href="javascript:void(0)" class="brk-mini-cart__product--remove remove" onclick="Deletecartlist('{{>cartid}}')"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+        </div>
+    </script>
+    <script id="Binddatanotificationhere" type="text/x-jsrender">
+        <div class="brk-mini-cart__product" style="{{if isview==0}}background: #e8e8e8;{{/if}}">
+            <div class="col-sm-12">
+                <p class="font__family-montserrat font__size-16 line__height-21 font__weight-semibold text-left" style="color: #868484;font-size: 14px;">{{>description}}</p>
+                <p style="color: #232222;font-size: 12px;text-align: right;">{{>notificationdate}}</p>
+            </div>
+
+        </div>
+    </script>
+    <script>
+        /*------------Right click , F12 Start-----------------*/
+
+        //$(document).keydown(function (event) {
+        //    if (event.keyCode == 123) { // Prevent F12
+        //        return false;
+        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+        //        return false;
+        //    } else if (event.ctrlKey && (event.keyCode === 67 || event.keyCode === 86 || event.keyCode === 85 || event.keyCode === 117)) {
+        //        return false;
+        //    } else if (event.keyCode == 42) {
+        //        return false;
+        //    }
+        //});
+        //$(document).ready(function () {
+        //    /*------------Right click , F12 Start-----------------*/
+        //    $('html').on("contextmenu", function (e) {
+        //        return false;
+        //    });
+        //    /*------------Right click , F12 End-----------------*/
+        //});
+        /*------------Right click , F12 End-----------------*/
+        function getDomain() {
+            var domainPath = '@System.Configuration.ConfigurationManager.AppSettings["domainPath"]';
+            return domainPath;
+        }
+        function getDomainAdmin() {
+            var domainPath = '@System.Configuration.ConfigurationManager.AppSettings["domainPathAdmin"]';
+            return domainPath;
+        }
+
+        function getCurrencyCode() {
+            return $("#Selected_Currency").html() || "INR";
+        }
+        function getCurrencyLang() {
+            return $("#Sel_CurrLang").val() || "en-IN";
+        }
+    </script>
+    <script id="Ddlsignupfindcountry" type="text/x-jsrender">
+        <option value="{{>countryid}}">{{>countryname}}</option>
+    </script>
+    <script id="Ddlsignupfindstate" type="text/x-jsrender">
+        <option value="{{>stateid}}">{{>statename}}</option>
+    </script>
+    <script id="Ddlsignupfindcity" type="text/x-jsrender">
+        <option value="{{>cityid}}">{{>cityname}}</option>
+    </script>
+    <script id="render_currency" type="text/x-jsrender">
+        <li class="dropdown-item" data-value="{{>currencycode}}" data-lang="{{>language}}" CountryId="{{>countryid}}" CountryName="{{>countryname}}">
+            <img src="@System.Configuration.ConfigurationManager.AppSettings["domainPathAdmin"]/UploadFiles/Country/{{>flagimg}}" data-value="{{>flagimg}}" />
+            <span>{{>currencycode}}</span>
+        </li>
+    </script>
+    @*<script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 500) {
+
+                $('.lrg-logo').hide();
+                $('.sml-logo').show(1000);
+
+            }
+            else {
+
+                $('.lrg-logo').show();
+                $('.sml-logo').hide(2000);
+
+
+
+
+            }
+        });*@
+
+
+
+
+    @*</script>*@
+
+
+</body>
+</html>

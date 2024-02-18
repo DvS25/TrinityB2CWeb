@@ -1,0 +1,801 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProductDetail";
+}
+<style>
+    .brs-sidebar__title_product {
+        border-bottom: 1px solid #ebebeb;
+        padding: 0px 20px 22px 10px;
+        margin-bottom: 30px;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .readyitems {
+        margin: 9px;
+        padding: 10px;
+    }
+
+        .readyitems span {
+            font-size: 13px;
+        }
+
+            .readyitems span:first-child {
+                color: #696969;
+                font-size: 19px;
+            }
+
+    .owlprenext {
+        color: #898989;
+        font-size: 32px !important;
+    }
+
+    .rosegold {
+        color: #f0b8a1;
+    }
+
+    .yellowgold {
+        color: #dcb57a;
+    }
+
+    .readyitems {
+        text-align: center;
+    }
+
+    .horizontal_listproduct {
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+        .horizontal_listproduct div span {
+            font-size: .875rem;
+            width: 52px;
+            height: 52px;
+            line-height: 41px;
+            text-align: center;
+            padding: 10px;
+            transition: all .3s ease-in-out;
+            color: var(--brk-dark-base);
+            border-right: 1px solid #ececec;
+        }
+
+        .horizontal_listproduct div {
+            width: fit-content;
+            border: 1px solid #ececec;
+        }
+
+    .brk-tabs-nav {
+        min-height: 44px !important;
+    }
+
+    .magic-line {
+        height: 33px !important;
+    }
+
+    /*---------------css by dvs-------------*/
+    .pd_detailbox {
+        width: 100%;
+        border: 1px solid #f1ebeb;
+    }
+
+        .pd_detailbox td {
+            padding-right: 50px;
+        }
+
+        .pd_detailbox .font-w-600 {
+            display: table-cell;
+            float: unset;
+        }
+</style>
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-40"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="d-flex justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat" id="breadsubcategoryname"></h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        <h3 class="brk-white-font-color font__family-montserrat font__size-25 line__height-21 text-uppercase mb-15" id="breadheaderdesignno"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.Designno" id="hidedesignno" />
+<input type="hidden" value="@ViewBag.GPURITY" id="hidegoldpurity" />
+<input type="hidden" value="@ViewBag.GCOLOR" id="hidegoldcolor" />
+<input type="hidden" value="@ViewBag.DPURITY" id="hidediamondpurity" />
+<input type="hidden" value="@ViewBag.DCOLOR" id="hidediamondcolor" />
+<input type="hidden" value="@ViewBag.DSIZE" id="hidedesignsize" />
+<input type="hidden" value="@ViewBag.CUSTUMIZENOTES" id="hidecutomizenotes" />
+<input type="hidden" value="@ViewBag.ISCUSTOMIZE" id="hideisfromcartcutomize" />
+<input type="hidden" value="@ViewBag.CARTID" id="hideiscutomizefromcartid" />
+<input type="hidden" value="@ViewBag.CARTTOPRODUCT" id="hidecarttoproduct" />
+<div class="main-wrapper">
+    <main class="main-container mt-40">
+        <div class="container">
+            <div class="brk-sc-shop-item" data-brk-library="component__shop_item_page">
+                <input type="hidden" value="@ViewBag.Designno" id="hidedesignno" />
+                <input type="hidden" id="hideiscutomize" />
+                <input type="hidden" id="subcategoryname" />
+                <input type="hidden" id="hideiscutomizecartid" />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="brk-sc-shop-item__main">
+                            <div class="row">
+                                <div class="col-12 col-lg-4 col-md-4">
+                                    <div class="col-md-12 slider-thumbnailed slider-thumbnailed_shop fa-req" id="imagediv_rose">
+                                        <div id="imagelistdetails_rose" class="slider-thumbnailed-for arrows-modern" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "fade": true, "arrows": false, "autoplay": false, "autoplaySpeed": 4200}' data-brk-library="slider__slick">
+
+                                        </div>
+                                        <div id="imagesecondlistdetails_rose" class="slider-thumbnailed-nav" data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slider-thumbnailed slider-thumbnailed_shop fa-req" id="imagediv_yellow">
+                                        <div id="imagelistdetails_yellow" class="slider-thumbnailed-for arrows-modern" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "fade": true, "arrows": false, "autoplay": false, "autoplaySpeed": 4200}' data-brk-library="slider__slick">
+
+                                        </div>
+                                        <div id="imagesecondlistdetails_yellow" class="slider-thumbnailed-nav" data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 slider-thumbnailed slider-thumbnailed_shop fa-req" id="imagediv_white">
+                                        <div id="imagelistdetails_white" class="slider-thumbnailed-for arrows-modern" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "fade": true, "arrows": false, "autoplay": false, "autoplaySpeed": 4200}' data-brk-library="slider__slick">
+
+                                        </div>
+                                        <div id="imagesecondlistdetails_white" class="slider-thumbnailed-nav" data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-8 col-sm-12 col-md-8">
+                                    <div class="brk-sc-shop-item__info">
+
+                                        <div class="row font__family-montserrat brk-black-font-color font__size-28 font__weight-light line__height-32">
+                                            <div class="col-sm-11 col-10">
+                                                <p class="pdheader" id="headerdesignno"></p>
+                                            </div>
+                                            <div class="col-sm-1 col-1 txtctr">
+                                                <input id="toggle-heartdetail" class="toggle-heart" type="checkbox" style="display:contents" />
+                                                <label for="toggle-heartdetail" aria-label="like" class="wishaftereffect" onclick="addtowishlist()">❤</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 row">
+                                            <span class="indianprice font__weight-semibold font__size-18" id="actualprice"></span>
+                                            <span class="indianoldprice ld-price font__size-16 oldpricecss" id="oldprice"></span>
+                                            <label id="prineerrordiv" style="color:#ec1212;font-style: italic;font-size: 13px;display:none">Diamond price is not available. Kindly call on : 0216-4000-800 for more details.</label>
+                                        </div>
+                                        <div class="col-sm-4 row">
+                                            <div class="brk-rating mt-10" data-brk-library="component__elements">
+                                                <div class="brk-rating__layer"><i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i></div>
+                                                <div class="brk-rating__imposition" id="ratstardiv">
+                                                    <div class="visible">
+                                                        <i class="fas fa-star y-clr"></i>
+                                                        <i class="fas fa-star y-clr"></i>
+                                                        <i class="fas fa-star y-clr"></i>
+                                                        <i class="fas fa-star y-clr"></i>
+                                                        <i class="fas fa-star y-clr"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box">
+                                            <h3 class="font__family-montserrat brk-black-font-color font__weight-bold font__size-14 line__height-32 customiz">Customize your design</h3>
+                                            <div class="wd-100 row">
+                                                <label class="customeheader">Gold Purity :</label>
+                                                <div class="col-sm-8" style="display:inline" id="goldpuritybind">
+                                                    @*<label class="containerradio"  style="display:inline">
+                                                            18KT
+                                                            <input type="radio" id="" name="radio">
+                                                            <span class="checkmarkradio"></span>
+                                                        </label>*@
+
+                                                </div>
+                                            </div>
+                                            <div class="wd-100 row m-t-10">
+                                                <label class="customeheader">Gold Color :</label>
+                                                <div class="col-sm-9" style="display:inline" id="goldcolorbind">
+                                                    @*<lable class="gcolorlable">ROSE</lable>*@
+                                                </div>
+                                            </div>
+                                            <div class="wd-100 row m-t-10">
+                                                <label class="customeheader">Diamond Purity :</label>
+                                                <div class="col-sm-9" style="display:inline" id="diamondowlcrousel">
+                                                    @*<lable>VVS</lable>*@
+                                                </div>
+                                            </div>
+                                            <div class="wd-100 row m-t-10">
+                                                <label class="customeheader">Diamond Color :</label>
+                                                <div class="col-sm-9" style="display:inline" id="diamondcolorowlcrousel">
+                                                    @*<lable>EF</lable>*@
+                                                </div>
+                                            </div>
+                                            <div class="wd-100 row m-t-10" id="lisize">
+                                                <label class="customeheader">Size :</label>
+                                                <div class="brk-sc-sorting__sort-select d-inline brk-form-round pr-0  size">
+                                                    <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                                        @*<div style="width:200px;padding:20px;height: 150px;">*@
+                                                        <select style="padding-bottom: 8px;padding-top: 8px;overflow: hidden;overflow-y: scroll;" name="select" class="form-control" id="osizewlcrousel" onchange="this.size = 1; this.blur(); ProductDetail.ClickCustomize('Size', '', '');" onfocus='this.size=5;' onblur='this.size=1;'></select>
+                                                        @*</div>*@
+                                                    </div>
+                                                </div>
+                                                <img id="lbl_JewelletSize" src="" style="width: 30px;height: 100%;margin-right: 15px;margin-top: 5px;">
+                                                <div class="pl-0">
+                                                    <a data-toggle="modal" data-target="#mysizemodal" class=""><p class="pb-10" style="text-decoration:underline">My Size?</p></a>
+                                                </div>
+                                            </div>
+                                            <div class="brk-tabs brk-tabs_tabbed-filter" data-index="1" data-brk-library="component__tabbed_contents" id="custumeul" style="z-index:0">
+                                                <ul class="brk-tags brk-tags_solid font__family-montserrat btncustome" data-brk-library="component__tags" id="ullibackgroundclr">
+                                                    <li id="lireadyship" class="btn-color"><a href="javascript:void(0)" rel="tag">Ready To Ship</a></li>
+                                                    @*<li id="limetal"><a href="javascript:void(0)" rel="tag">Metal</a></li>
+                                                        <li id="lidiamond"><a href="javascript:void(0)">Diamond</a></li>*@
+                                                    @*<li id="lisize"><a href="javascript:void(0)" rel="tag">Size</a></li>*@
+                                                </ul>
+                                                <div class="readydivmain">
+                                                    <div id="readyshipdiv">
+                                                        <div class="owl-carousel owl-theme" id="readytoshipowlcrousel"></div>
+                                                    </div>
+                                                    @*<div id="readymetaldiv" style="display:none">
+                                                            <div class="owl-carousel owl-theme" id="metalowlcrousel">
+                                                            </div>
+                                                        </div>
+                                                        <div id="readydiamonddiv" style="display:none">
+                                                            <div class="owl-carousel owl-theme" id="diamondowlcrousel"></div>
+                                                            <div class="owl-carousel owl-theme" id="diamondcolorowlcrousel"></div>
+                                                        </div>*@
+                                                    @*<div id="readysizediv" style="display:none">
+                                                            <div class="owl-carousel owl-theme" id="osizewlcrousel"></div>
+
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="customeheader">
+                                                    <h3 class="font__family-montserrat brk-black-font-color font__weight-bold font__size-14 line__height-32 customiz">Select City : </h3>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="searchcityinput" id="findcity" placeholder="Enter City" onkeyup="ProductDetail.AutosuggestCitySearch();">
+                                                    @*<div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                                            <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                                                <select name="select" class="form-control" id="findcity" onchange="ShowEastimatedate()"></select>
+
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 wd-100 pl-0" id="expecteddivtime" style="display:none">
+                                            <p><i class="fa fa-dot-circle" aria-hidden="true"></i>Expected Delivery Time</p>
+                                            <p>Estimate delivery in <span id="deliveryday"></span> days.Your order will be deliverd till <span id="deliverydate"></span>.</p>
+                                        </div>
+                                        <div class="col-sm-12 wd-100 pl-0">
+                                            <p><i class="fa fa-dot-circle" aria-hidden="true"></i>Easy 30 days returns</p>
+                                            <p>Choose to return within 30 days.</p>
+                                        </div>
+                                        <div class="brk-sc-info-grid d-flex flex-wrap mr-t-5">
+
+                                            <div id="addtocartdiv"><a href="javascript:void(0)" onclick="addtocartlist()" class="btn btn-prime btn-lg border-radius-25 font__family-open-sans font__weight-bold mt-auto brk-sc-shop-item__info-btn" data-brk-library="component__button"><i class="fa fa-shopping-basket" aria-hidden="true"></i> <span class="before"></span><span class="after"></span><span class="border-btn"></span>Add to cart</a></div>
+                                            <div id="gotocartdiv" style="display:none"><a href="javascript:void(0)" onclick="Showcartlist()" class="btn btn-prime btn-lg border-radius-25 font__family-open-sans font__weight-bold mt-auto brk-sc-shop-item__info-btn" data-brk-library="component__button"><i class="fa fa-arrow-right" aria-hidden="true"></i> <span class="before"></span><span class="after"></span><span class="border-btn"></span>Go to cart</a></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="brk-tabs brk-tabs_canted" data-brk-library="component__shop_item_page_sidebar">
+                                <ul class="brk-tabs-nav font__family-montserrat font__size-14 font__weight-semibold line__height-14 text-uppercase">
+                                    <li class="brk-tab"><span>Description</span></li>
+                                </ul>
+                                <div class="brk-tabs-content">
+                                    <div class="brk-tab-item pt-35">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <section class="detailtablediv" style="border:none;">
+                                                    <table class="pd_detailbox">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="p-0" id="topdatabind"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="pd_detailbox">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="p-0" id="golddetails" width="50%"></td>
+                                                                <td class="p-0" id="diamonddetails" width="50%"></td>
+                                                                <td class="p-0" id="colostonedetails" width="50%"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="pd_detailbox">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="p-0" id="makincharges" width="50%"></td>
+                                                                <td class="p-0" id="pricebreakup" width="50%"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="showhiderelated" class="pb-50">
+    <div id="relatedproductdiv" class="brk-tabs w-100 brk-tabs_rounded d-flex flex-column brk-tabs_shop mb-70" data-brk-library="component__tabs">
+        <ul class="brk-tabs-nav brk-white-font-color font__family-montserrat font__size-15 font__weight-normal line__height-16 d-inline-flex flex-wrap align-items-center ml-auto mr-auto">
+            <li class="brk-tab d-flex align-items-center text-uppercase pl-40 pr-40"><i class="fa fa-shopping-basket" aria-hidden="true"></i> <span>Related Products</span></li>
+        </ul>
+        <div class="brk-tabs-content">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/Content/img/1920x800.jpg" alt="alt" class="brk-tabs-content__img lazyload" data-brk-library="fancybox"> <span class="brk-tabs-content__overlay brk-base-bg-gradient-90deg"></span>
+            <div class="brk-tab-item">
+                <div class="container">
+                    <div class="brk-slider">
+                        <div id="related_product" class="brk-slider__items slick-loading" data-slick='{"slidesToShow": 4, "slidesToScroll": 2, "arrows": false, "dots": true}' data-brk-library="slider__slick">
+                        </div>
+                        <div class="brk-slider__control d-flex align-items-center"><span class="brk-slider__prev brk-base-font-color font__size-24"><i class="fa fa-angle-left" aria-hidden="true"></i> </span><span class="brk-slider__next brk-base-font-color font__size-24"><i class="fa fa-angle-right" aria-hidden="true"></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="mb-70 txtctr">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="title__heading-06 title__heading-main font__family-montserrat font__size-40 font__weight-ultra-light" data-brk-library="component__title">Trinity <span class="font__weight-bold">Advantage</span></h2>
+            </div>
+            <div class="col-md-12">
+                <div class="row pt-50">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="grayinbox">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="backimg">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="grayinbox">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                        </div>
+                     <div class="col-md-4 col-sm-6">
+                            <div class="backimg">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                     </div>
+                      <div class="col-md-4 col-sm-6">
+                            <div class="grayinbox">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                      </div>
+                     <div class="col-md-4 col-sm-6">
+                            <div class="backimg">
+                                <span><i class="fal fa-hand-holding-usd advantageimg"></i></span>
+                                <p><b>ACCESS OUR STRATEGIC</b></p>
+                                <p>Native is provided with regular updates, new features and bundled plugins.</p>
+                            </div>
+                     </div>
+              </div>
+           </div>
+       </div>
+    </div>*@
+
+<div id="mysizemodal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" id="btnloginmodalclose">&times;</button>
+            <div class="modal-body">
+                <img src="~/Content/img/gallery/sizemeasure.jpg" />
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/vendor/owl-carousel/owl.transitions.css" rel="stylesheet" />
+<link href="~/Content/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" />
+
+@section Scripts{
+    <script src="~/Content/vendor/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Product/ProductDetail.js"></script>
+    @*<script id="Datatxtdiamoncolor" type="text/x-jsrender">
+            <div class="readyitems item">
+                <span><i class="fal fa-gem"></i></span><br />
+                <span>{{>quality}}</span>
+            </div>
+        </script>*@
+    @*<script id="Ddlfindcity" type="text/x-jsrender">
+            <option value="{{>cityid}}">{{>cityname}}</option>
+        </script>*@
+    <script id="Datareadytoship" type="text/x-jsrender">
+        <div class="readyitems width-100 item row" onclick="ProductDetail.ReadutoshipCustomize('{{>gpurity}}','{{>gcolor}}','{{>dimaondquality}}','{{>dimaondcolor}}','{{>psize}}')">
+            <div class="col-sm-4 width-100">
+                <span><i class="fal fa-coins yellowgold"></i></span><br />
+                <span>{{>gpurity}} {{>gcolor}}</span>
+            </div>
+            <div class="col-sm-4 width-100">
+                <span><i class="fal fa-gem"></i></span><br />
+                <span>{{>dimaondquality}} - {{>dimaondcolor}}</span>
+            </div>
+            <div class="col-sm-4 width-100">
+                <span><i class="fal fa-ruler"></i></span><br />
+                <span>Size : {{>psize}}</span>
+            </div>
+            @*<div class="col-sm-3">
+                    <span><i class="fal fa-rupee-sign"></i></span><br />
+                    <span id="readytoshipprice">{{>price}}</span>
+                </div>*@
+        </div>
+    </script>
+    @*<script id="Datagoldcolorpurity" type="text/x-jsrender">
+            <div class="readyitems item goldcolorputityclass" id="goldcolorputity{{>purityid}}" onclick="ProductDetail.ClickCustomize('Metal','{{>purity}}','{{>purityid}}')">
+                <span><i class="fal fa-coins" style="color:{{>color}}"></i></span><br />
+                <span>{{>purity}}</span>
+            </div>
+        </script>*@
+    <script id="Datagoldpurity" type="text/x-jsrender">
+        <label class="containerradio" style="display:inline">
+            {{>purity}}
+            <input type="radio" id="goldpurity{{>purity}}" value="{{>purity}}" name="radio" onclick="ProductDetail.ClickCustomize('GoldPurity','{{>purity}}','')">
+            <span class="checkmarkradio"></span>
+        </label>
+    </script>
+    <script id="Datagoldcolor" type="text/x-jsrender">
+        <lable class="gcolorlable" id="goldcolor{{>gcolor}}" onclick="ProductDetail.ClickCustomize('GoldColor','{{>gcolor}}','')">{{>gcolor}}</lable>
+    </script>
+    <script id="Datatxtdiamonclarity" type="text/x-jsrender">
+        <lable class="dputitycss" id="diamondpurity{{>quality}}" onclick="ProductDetail.ClickCustomize('Diamondpurity','{{>quality}}','')">{{>quality}}</lable>
+    </script>
+    <script id="Datatxtdesignsize" type="text/x-jsrender">
+        <option value="{{>size}}">{{>size}}</option>
+    </script>
+    <script id="Datadiamondcolor" type="text/x-jsrender">
+        <lable class="dcolorcss" id="diamondcolor{{>color}}" onclick="ProductDetail.ClickCustomize('Diamondcolor','{{>color}}','')">{{>color}}</lable>
+    </script>
+    <script id="Datarelated_product" type="text/x-jsrender">
+        <div class="flip-box brk-sc-flip-two text-center" data-brk-library="component__shop_flip,component__flip_box_css">
+            <div class="pt-20 pb-20" onclick="Productdetail('{{>designcode}}')">
+                <div class="flip__front brk-sc-flip-two__front">
+                    <div class="brk-sc-flip-two__thumb">
+                        <img src="{{>imagepath}}" data-src="{{>imagepath}}" alt="alt" class="lazyload" id="atzoom" data-zoom-image="{{>imagepath}}">
+                    </div>
+                    <div class="brk-sc-flip-two__description relateddetaildiv">
+                        <div class="brk-sc-flip-two__price font__family-montserrat font__weight-medium brk-base-font-color">{{>designcode}}</div>
+                        <div class="col-sm-12">
+                            <div class="brk-base-font-color font__family-montserrat font__size-17 font__weight-medium ptb">
+
+                                {{if notpriceindiamond == 0}}
+                                <span class="relateddesignpricedis ld-price font__size-16" id="relateddesignpricedis{{>designcode}}"></span>
+                                <input id="disiprrel{{>designcode}}" type="hidden" value="{{>totaldiscountprice}}" />
+                                {{if totalprice != totaldiscountprice}}
+                                <span class="relateddesignprice font__weight-semibold font__size-18 oldpricecss" id="relateddesignprice{{>designcode}}"></span>
+                                <input id="iprrel{{>designcode}}" type="hidden" value="{{>totalprice}}" />
+                                {{/if}}
+                                {{/if}}
+                                {{if notpriceindiamond > 0}}
+                                <span class="" id="" style="font-size:14px;cursor:pointer">More Details</span>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+
+    <script id="Dataimagelistdetails_rose" type="text/x-jsrender">
+        {{if color != "YELLOW" && color != "WHITE"}}
+        <div>
+            {{if imagetype == "IMG"}}
+            <img id="atzoom" filetype="{{>imagetype}}" src="{{>imagepath}}" data-src="{{>imagepath}}" data-zoom-image="{{>imagepath}}" alt="alt" class="lazyload">
+            {{else}}
+            <video id="atzoom" filetype="{{>imagetype}}" class="lazyload" width="340" height="340" loop="" controls="" muted="" autoplay="autoplay" disablePictureInPicture controlsList="nodownload">
+                <source src="{{>imagepath}}" type="video/mp4">
+            </video>
+            {{/if}}
+        </div>
+        {{/if}}
+    </script>
+    <script id="Dataimagesecondlistdetails_rose" type="text/x-jsrender">
+        {{if color != "YELLOW" && color != "WHITE"}}
+        {{if imagetype == "IMG"}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="{{>imagepath}}" data-src="{{>imagepath}}" data-image="{{>imagepath}}" data-zoom-image="{{>imagepath}}" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{else}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-zoom-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{/if}}
+        {{/if}}
+    </script>
+
+    <script id="Dataimagelistdetails_yellow" type="text/x-jsrender">
+        {{if color != "ROSE" && color != "WHITE"}}
+        <div>
+            {{if imagetype == "IMG"}}
+            <img id="atzoom" filetype="{{>imagetype}}" src="{{>imagepath}}" data-src="{{>imagepath}}" data-zoom-image="{{>imagepath}}" alt="alt" class="lazyload">
+            {{else}}
+            <video id="atzoom" filetype="{{>imagetype}}" class="lazyload" width="340" height="340" loop="" controls="" muted="" autoplay="autoplay" disablePictureInPicture controlsList="nodownload">
+                <source src="{{>imagepath}}" type="video/mp4">
+            </video>
+            {{/if}}
+        </div>
+        {{/if}}
+    </script>
+    <script id="Dataimagesecondlistdetails_yellow" type="text/x-jsrender">
+        {{if color != "ROSE" && color != "WHITE"}}
+        {{if imagetype == "IMG"}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="{{>imagepath}}" data-src="{{>imagepath}}" data-image="{{>imagepath}}" data-zoom-image="{{>imagepath}}" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{else}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-zoom-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{/if}}
+        {{/if}}
+    </script>
+
+    <script id="Dataimagelistdetails_white" type="text/x-jsrender">
+        {{if color != "YELLOW" && color != "ROSE"}}
+        <div>
+            {{if imagetype == "IMG"}}
+            <img id="atzoom" filetype="{{>imagetype}}" src="{{>imagepath}}" data-src="{{>imagepath}}" data-zoom-image="{{>imagepath}}" alt="alt" class="lazyload">
+            {{else}}
+            <video id="atzoom" filetype="{{>imagetype}}" class="lazyload" width="340" height="340" loop="" controls="" muted="" autoplay="autoplay" disablePictureInPicture controlsList="nodownload">
+                <source src="{{>imagepath}}" type="video/mp4">
+            </video>
+            {{/if}}
+        </div>
+        {{/if}}
+    </script>
+    <script id="Dataimagesecondlistdetails_white" type="text/x-jsrender">
+        {{if color != "YELLOW" && color != "ROSE"}}
+        {{if imagetype == "IMG"}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="{{>imagepath}}" data-src="{{>imagepath}}" data-image="{{>imagepath}}" data-zoom-image="{{>imagepath}}" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{else}}
+        <div class="brk-slid" imgcolor="{{>color}}" filetype="{{>imagetype}}" data-zoom-image="{{>imagepath}}" data-image="{{>imagepath}}" onclick="imageadditionalouter(this)">
+            <img src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-src="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" data-zoom-image="@System.Configuration.ConfigurationManager.AppSettings["domainPath"]/Content/img/play-button.png" class="brk-slid__img lazyload" alt="alt">
+            <span class="brk-slid__overlay"></span>
+            <i class="fal fa-plus font__size-24 brk-slid__icon"></i>
+        </div>
+        {{/if}}
+        {{/if}}
+    </script>
+
+
+
+    <script id="Datamakincharges" type="text/x-jsrender">
+        <div>
+            <h4>Making Charge</h4>
+            <div class="col-sm-12 pdtable">
+                <table style="width:100%">
+                    <tbody id="makincharges">
+                        <tr>
+                            <td width="50%" class="font-w-600">Labour Type:</td>
+                            <td width="50%" class="text-right">{{>labour_type}}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" class="font-w-600">Rate:</td>
+                            <td width="50%" class="text-right" id="labour_makeing_rate">{{>makingrate}} /gm</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" class="font-w-600">Value:</td>
+                            <td width="50%" class="text-right" id="labour_makeing_charges">{{>makingcarges}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </script>
+
+    <script id="Datapricebreakup" type="text/x-jsrender">
+        <div>
+            <h4>Price Breakup</h4>
+            <div class="col-sm-12 pdtable">
+                <table style="width:100%">
+                    <tbody>
+                        <tr>
+                            <td width="50%" class="font-w-600">Gold:</td>
+                            <td width="50%" class="text-right" id="breakupgoldprice">{{>goldprice}}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" class="font-w-600">Diamond:</td>
+                            <td width="50%" class="text-right" id="pricebreakupdiamondprice">{{>diamondprice}}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" class="font-w-600">Making Charge:</td>
+                            <td width="50%" class="text-right" id="prbreakmakeingchrg">{{>makingcarges}}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" class="font-w-600">Total Amount:</td>
+                            <td width="50%" class="text-right" id="pricebreakuptotalprice">{{>price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </script>
+
+    <script id="Datagolddetails" type="text/x-jsrender">
+        <h4>Gold Detail</h4>
+        <div class="col-sm-12 pdtable">
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td width="50%" class="font-w-600">Component:</td>
+                        <td width="50%" class="text-right" id="goldpucovalue">{{>goldpurity}}<span> {{>goldcolor}}</span></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Weight:</td>
+                        <td width="50%" class="text-right">{{>goldweight}}<span> gm</span></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Rate:</td>
+                        <td width="50%" class="text-right" id="cur_gold_rate">{{>currentgoldrate}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Value:</td>
+                        <td width="50%" class="text-right" id="goldprice">{{>goldprice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script id="Datadiamonddetails" type="text/x-jsrender">
+        <h4>Diamond Detail</h4>
+        <div class="col-sm-12 pdtable">
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td width="50%" class="font-w-600">Shape:</td>
+                        <td width="50%" class="text-right">{{>diamondshape}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Clarity:</td>
+                        <td width="50%" class="text-right" id="dpvalue">{{>diamondpurity}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Color:</td>
+                        <td width="50%" class="text-right" id="dcvalue">{{>diamondcolour}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Pieces:</td>
+                        <td width="50%" class="text-right">{{>diamondpices}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Weight:</td>
+                        <td width="50%" class="text-right">{{>diamondweight}}<span> cts</span></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Value:</td>
+                        <td width="50%" class="text-right diamondprice" id="diamondprice{{>rownum}}"></td>
+                    </tr>
+                    <tr style="display:none">
+                        <td width="50%" class="font-w-600"></td>
+                        <td width="50%" class="text-right"><input id="ipr{{>rownum}}" type="hidden" value="{{>diamondprice}}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </script>
+
+    <script id="Datatoplength" type="text/x-jsrender">
+        <h4>Product Detail</h4>
+        <div class="col-sm-12 pdtable">
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td class="font-w-600">Metal/Purity:</td>
+                        <td class="text-right" id="headergoldpurity"></td>
+                        <td class="font-w-600">Length:</td>
+                        <td class="text-right">{{>lenth}} mm</td>
+                    </tr>
+                    <tr>
+                        <td class="font-w-600">Width:</td>
+                        <td class="text-right">{{>width}} mm</td>
+                        <td class="font-w-600">Height:</td>
+                        <td class="text-right">{{>height}} mm</td>
+                    </tr>
+                    <tr>
+                        <td class="font-w-600">Net Weight:</td>
+                        <td class="text-right" id="netweight"></td>
+                        <td class="font-w-600">ColorStone Weight:</td>
+                        <td class="text-right">{{>colorweight}} gm</td>
+                    </tr>
+                    <tr>
+                        {{if psize != undefined}}
+                        <td class="font-w-600">Size:</td>
+                        <td class="text-right" id="jewellerysize">{{>psize}}</td>
+                        {{/if}}
+                        <td></td>
+                        <td class="text-right"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script id="Datacolostonedetails" type="text/x-jsrender">
+        <h4>ColorStone Detail</h4>
+        <div class="col-sm-12 pdtable">
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td width="50%" class="font-w-600">Shape:</td>
+                        <td width="50%" class="text-right">{{>stoneshape}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Clarity:</td>
+                        <td width="50%" class="text-right">{{>stonequality}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Color:</td>
+                        <td width="50%" class="text-right">{{>stonecolor}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Pieces:</td>
+                        <td width="50%" class="text-right">{{>stonepcs}}</td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Weight:</td>
+                        <td width="50%" class="text-right">{{>stoneweight}}<span> cts</span></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600">Value:</td>
+                        <td width="50%" class="text-right color_amount" id="color_amount{{>rownum}}"></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="font-w-600"></td>
+                        <td width="50%" style="display:none"><input id="color_amountipr{{>rownum}}" type="hidden" value="{{>stoneamount}}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+}

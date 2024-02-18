@@ -1,0 +1,394 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "CartList";
+}
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-40"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">Your Cart</h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        <h3 class="brk-white-font-color font__family-montserrat font__size-18 line__height-21 text-uppercase mb-15">Check all your designs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-wrapper">
+    <main class="main-container">
+        <div class="container">
+            <div id="showdivcheckout" style="display:none" class="mt-40">
+                @*----address form---*@
+                    <form action="#" style="display:none" id="addaddressform">
+                        <div class="container">
+                            <div class="">
+                                @*<div class="col-12">
+                                    <h2 class="font__family-montserrat font__size-36 font__weight-bold line__height-42">Address details</h2>
+                                </div>*@
+                                <div class="row header">
+                                    <h5 class="font-w-600">Address details</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4 pr-0">Person Name<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <input class="required width-100" id="txtcontactperson" name="editperosnname" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">Country<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <select class="required width-100" name="editcountryname" id="findcountry" onchange="Castlistview.Changecountry()"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">Address<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <input class="required width-100" id="txtaddress" name="editaddressname" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">State<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <select class="required width-100" name="editstatename" id="findstate" onchange="Castlistview.ChangeState()"></select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">Landmark<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <input class="required width-100" id="txtlandmark" name="editlankmark" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">City<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <select class="required width-100" name="editcityname" id="findcity"></select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">Pincode<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <input class="required width-100 numbersonly" id="txtpincode" name="editpincode" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 row">
+                                        <span class="col-sm-5 col-lg-4">Mobile No<span class="starcss"> *</span></span>
+                                        <div class="col-sm-7 col-lg-8">
+                                            <input class="required width-100 numbersonly" id="txtmobileno" name="editmobileno" type="text" maxlength="15" />
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-12 col-md-6">
+                                    <input id="txtcontactperson" type="text" placeholder="Contact Person Name" required></div>
+                                <div class="col-12 col-md-6">
+                                    <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                        <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                            <select name="select" class="form-control" id="findcountry" onchange="Castlistview.Changecountry()"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6"><input type="text" id="txtaddress" required placeholder="Address"></div>
+                                <div class="col-12 col-md-6">
+                                    <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                        <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                            <select name="select" class="form-control" id="findstate" onchange="Castlistview.ChangeState()"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6"><input type="text" id="txtlandmark" required placeholder="Landmark"></div>
+                                <div class="col-12 col-md-6">
+                                    <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                        <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                                            <select name="select" class="form-control" id="findcity"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6"><input type="text" id="txtpincode" required placeholder="Pincode"></div>
+                                <div class="col-12 col-md-6"><input type="text" id="txtmobileno" required placeholder="Mobile No"></div>*@
+                                <div class="col-12 mt-20 mb-40 text-center">
+                                    @*<a href="javascript:void(0)" id="saveaddressdetail" class="btn btn-prime btn-md border-radius-25 btn-no-shadow mx-0 my-0 font__weight-bold btn-black brk-library-rendered" data-brk-library="component__button">
+                                        <span class="before"></span>
+                                        <span class="after"></span>
+                                        <span class="border-btn"></span>
+                                        Save Address
+                                    </a>*@
+                                    <button class="btndetails-1" type="button" id="saveaddressdetail">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                
+                @*----two address---*@
+                <div class="br-cc mb-40" style="display:none" id="editableaddress">
+                    <div class="row textaddressdiv">
+                        <div class="col-sm-12">
+                            <div class="box-css">
+                                <div class="op-header mb-15">
+                                    <div class="col-12 col-sm-12 col-md-5 col-lg-12 paddress">
+                                        <span class="font__size-18" style="padding:10px 0;">Address Detail</span>
+                                        <button class="addaddbtn" id="addnewbutton"><i class="fa fa-plus"></i>Add New Address</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="displaytwoaddress"></div>
+                </div>
+                @*----display address---*@
+                <div class="container mb-40" style="display:none" id="singleaddress">
+                    <div class="row textaddressdiv">
+                        <div class="col-sm-12 pl-0 pr-0">
+                            <div class="box-css">
+                                <div class="op-header mb-15">
+                                    <div class="col-12 col-sm-6 col-md-12 col-lg-12 paddress">
+                                        <span class="font__size-18">Address Detail</span>
+                                    </div>
+                                </div>
+                                <div class="pl-10 pt-10 pb-10" id="addresssignledetail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="showcart">
+                @*<div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <label for="email" class="control-lable">Email address:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label for="pwd" class="control-lable">Password:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-6">
+                            <label for="email" class="control-lable">Drop:</label>
+                            <select class="form-control">
+                                <option>india</option>
+                                <option>Us</option>
+                            </select>
+                        </div>
+                     
+                    </div>
+                   
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>*@
+                <article class="brk-checkout-order mt-40 pb-30" data-brk-library="component__checkout">
+                    <table class="table-responsive" style="width:100%" id="carttable">
+                        <thead>
+                            <tr>
+                                <th style="width:15%">Product</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th style="width:10%">Move To WishList</th>
+                                <th style="width:10%">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="datacartdesigns"></tbody>
+                    </table>
+                    <footer>
+                        <div class="row">
+                            <div class="col-sm-7 mr-t-5">
+                              <table id="orderremarkdiv" style="display:none">
+                                  <tr>
+                                      <td style="width:12%" class="pl-20">Remark : </td>
+                                      <td style="width:58%; padding-right:10px;" ><textarea rows="3" id="customerremark"></textarea></td>
+                                  </tr>
+                              </table>
+                            </div>
+                            <div class="col-sm-5 cartfooter">
+                                <div class="col-sm-12" style="width:100%">
+                                    <span>Total Amount : </span><span id="totalcartamount"></span>
+                                </div>
+                                <div class="col-sm-12" style="width:100%">
+                                    <span>Delivery Charges : </span><span id="totaldeliveryamount"></span>
+                                </div>
+                                <div class="col-sm-12" style="width:100%" id="giftchargediv">
+                                    <span>Gift Charges : </span><span id="totalgiftchargeamount"></span>
+                                </div>
+                                <div class="col-sm-12" style="width:100%">
+                                    <span>Payable Amount : </span><span id="totalpayableamount"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </footer><span class="brk-checkout-order__after"></span>
+                </article>
+                <div class="text-center translate-top-50">
+                    <a href="javascript:void(0)" id="clickonproceedtocheck" class="btn btn-prime btn-md border-radius-25 btn-no-shadow mx-0 my-0 font__weight-bold btn-black" data-brk-library="component__button">
+                        <span class="before"></span>
+                        <span class="after"></span>
+                        <span class="border-btn"></span>
+                        Proceed to Checkout
+                    </a>
+                    <a href="javascript:void(0)" style="display:none" id="clickonproceedtopayment" class="btn btn-prime btn-md border-radius-25 btn-no-shadow mx-0 my-0 font__weight-bold btn-black" data-brk-library="component__button">
+                        <span class="before"></span>
+                        <span class="after"></span>
+                        <span class="border-btn"></span>
+                        Proceed to Payment
+                    </a>
+                </div>
+            </div>
+            <div class="text-center" id="emptycartdiv" style="display:none">
+                <img src="~/Content/img/EmptyCart.JPG" style="max-width:30%;"/>
+            </div>
+            <div id="paymentsucess" style="display:none;" class="mt-40">
+                <div class="text-center succ-payment">
+                    <img src="~/Content/img/successcheck.jpg" style="max-width:5%"/>
+                    <h4 class="mt-10 mb-10">Payment Complete</h4>
+                    <span class="fw-clr">Thank You, Your Order Successfully Placed.</span><br />
+                    <span class="fw-clr">Your Order Id : <span class="clr-blk" id="payorderid"></span></span><br />
+                    <span class="fw-clr">Your Order Date : <span class="clr-blk" id="paydate"></span></span><br />
+                    <div class="mt-15">
+                        <a href="javascript:void(0)" id="continueshopping" class="btn btn-prime btn-md border-radius-25 btn-no-shadow mx-0 my-0 font__weight-bold btn-black brk-library-rendered" data-brk-library="component__button">
+                            <span class="before"></span>
+                            <span class="after"></span>
+                            <span class="border-btn"></span>
+                            Continue Shopping
+                        </a>
+                    </div>
+                   
+                </div>
+                
+            </div>
+        </div>
+    </main>
+</div>
+<input type="hidden" id="shippingaddressid" value="" />
+<link href="~/Content/vendor/jquery-confirm/jquery-confirm.css" rel="stylesheet" />
+@section Scripts{
+
+    <script src="~/Content/vendor/Razorpay/checkout.js"></script>
+    <script src="~/Scripts/Product/CartList.js"></script>
+    <script id="Ddlfindcountry" type="text/x-jsrender">
+        <option value="{{>countryid}}">{{>countryname}}</option>
+    </script>
+    <script id="Ddlfindstate" type="text/x-jsrender">
+        <option value="{{>stateid}}">{{>statename}}</option>
+    </script>
+    <script id="Ddlfindcity" type="text/x-jsrender">
+        <option value="{{>cityid}}">{{>cityname}}</option>
+    </script>
+    <script id="Datadisplaytwoaddress" type="text/x-jsrender">
+        <div class="col-sm-6">
+            <div class="pl-10 pt-10 pb-10 m-h-120">
+               
+                <span class="font__size-18 line__height-2" id="txtcontactpersonname{{>shippingaddressid}}">{{>contactpersonname}}</span>
+                {{if defaualtaddress == 1}}
+                <span class="colordefaultadd">Default Address</span>
+                {{/if}}
+                <span class="custom-radios">
+                    <span style="float:right">
+                        <input type="radio" id="deft{{>shippingaddressid}}" onclick="Castlistview.Setdefault('{{>shippingaddressid}}')" name="color" value="color-1" {{if defaualtaddress == 1}}checked {{/if}} />
+                        <label for="deft{{>shippingaddressid}}">
+                            <span>
+                            </span>
+                        </label>
+                    </span>
+                </span>
+                <br />
+                <span class="font__family-open-sans address-detail">{{>fulladdress}}
+                </span><br />
+                <span class="font__family-open-sans address-detail">Mobile: {{>mobileno}}</span>
+               
+                <input type="hidden" id="hiddenaddress{{>shippingaddressid}}" value="{{>address}}"/>
+                <input type="hidden" id="hiddencityid{{>shippingaddressid}}" value="{{>city}}" />
+                <input type="hidden" id="hiddencityname{{>shippingaddressid}}" value="{{>cityname}}" />
+                <input type="hidden" id="hiddenstateid{{>shippingaddressid}}" value="{{>state}}" />
+                <input type="hidden" id="hiddenstatename{{>shippingaddressid}}" value="{{>statename}}" />
+                <input type="hidden" id="hiddencountryid{{>shippingaddressid}}" value="{{>country}}" />
+                <input type="hidden" id="hiddencountryname{{>shippingaddressid}}" value="{{>countryname}}" />
+                <input type="hidden" id="hiddenpincode{{>shippingaddressid}}" value="{{>pincode}}" />
+                <input type="hidden" id="hiddenlandmark{{>shippingaddressid}}" value="{{>landmark}}" />
+                <input type="hidden" id="hiddenmobileno{{>shippingaddressid}}" value="{{>mobileno}}" />
+            </div>
+            <div class="offset-sm-10 col-11">
+                <span class="pr-5 editprofile" id="editaddressDetail{{>shippingaddressid}}" onclick="Castlistview.AddressEdit('{{>shippingaddressid}}')">
+                    <i class="fal fa-edit fs-17"></i>
+                </span>
+                <span class="pr-5" onclick="Castlistview.AddressDelete('{{>shippingaddressid}}')">
+                    <i class="fal fa-trash-alt cl-red fs-17"></i>
+                </span>
+            </div>
+        </div>
+    </script>
+    <script id="Dataaddressdetail" type="text/x-jsrender">
+        <span class="font__size-18 line__height-2">{{>contactpersonname}}</span>
+        <span class="change-add" onclick="Castlistview.Clickonchangeaddress()">Change</span><br />
+        <span class="font__family-open-sans address-detail">{{>fulladdress}}</span><br />
+        <span class="font__family-open-sans address-detail">Mobile: <span>{{>mobileno}}</span></span>
+        <span><input type="hidden" id="hiddeninvoiceno" value="{{>invoiceno}}"/></span>
+    </script>
+    <script id="cartdisgnsdata" type="text/x-jsrender">
+        <tr>
+            <td style="width:15%">
+                <a href="javascript:void(0)" onclick="showdetail('{{>cartid}}')"><img data-src="" src="{{>imagepath}}" alt="item-alt" class="lazyload brk-checkout-order-item__img"></a>
+            </td>
+            <td>
+                <div class="pr-10 pt-10">
+                    <input type="hidden" value="{{>iscustomize}}" id="iscutomize{{>cartid}}" />
+                    <input type="hidden" id="design_number{{>cartid}}" value="{{>designno}}" />
+                    <input type="hidden" id="cart_id{{>cartid}}" value="{{>cartid}}" />
+                    <span class="headertitle font__size-20">{{>designno}}</span><br />
+                    <span class="headertitle">Size : </span><span class="colorgray font__size-13" id="designsize{{>cartid}}">{{>size}}</span><br />
+                    <span class="headertitle">Metal : </span><span class="colorgray font__size-13"><span id="gpurity{{>cartid}}">{{>goldpurity}}</span> <span id="gcolor{{>cartid}}">{{>goldcolor}}</span> {{>metaltyle}} {{>goldweight}} gm</span><br />
+                    <span class="headertitle">Diamond : </span><span class="colorgray font__size-13"> <span id="dcolor{{>cartid}}">{{>diamond_purity}}/{{>diamond_color}}</span> {{>diamondpices}} pcs / {{>diamondweight}} cts</span><br />
+                    {{if stoneweight > 0}} <span class="headertitle">CStone : </span><span class="colorgray font__size-13"> {{>stonecode}} / {{if stonecolor != '[object Object]'}}{{>stonecolor}}{{else}}0{{/if}} {{>stonepcs}} pcs / {{>stoneweight}} cts</span><br />{{/if}}
+                    {{if personalizemsg != null}}
+                        <span class="headertitle">Remark : </span>
+                        <span class="colorgray font__size-13" id="Customizenotes{{>cartid}}"> {{>personalizemsg}}</span>
+                    {{/if}}
+                </div>
+                {{if giifwrappertitem == 1}}
+                <div class="pb-10">
+                    <label class="containercheck">This will be a gift
+                        <input type="checkbox" id="isgift{{>cartid}}" {{if gift == 1}} checked {{/if}} onclick="checkgift('{{>cartid}}')">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                {{/if}}
+            </td>
+            <td class="text-center">
+                <span class="designprice newp font__size-16 line-h-1" id="designprice{{>cartid}}"></span>
+                <input id="iprrel{{>cartid}}" type="hidden" value="{{>price}}" />
+                {{if oldprice != price}}
+                <br />
+                <span class="designpricedis oldp font__size-16" id="designpricedis{{>cartid}}"></span>
+                <input id="disiprrel{{>cartid}}" type="hidden" value="{{>oldprice}}" />
+                {{/if}}
+            </td>
+            <td class="text-center">
+                <div>
+                    <a class="cursorcss" onclick="Decreasequantity('{{>cartid}}')" href="javascript:void(0)"><i class="fa fa-caret-left l-h-0" aria-hidden="true"></i></a>
+                    <span id="quantitytotal{{>cartid}}" class="pl-10 pr-10">{{>quantity}}</span>
+                    <a class="cursorcss" onclick="Increasequantity('{{>cartid}}')" href="javascript:void(0)"><i class="fa fa-caret-right l-h-0" aria-hidden="true"></i></a>
+                </div>
+            </td>
+            <td class="text-center">
+                <button type="button" class="wishbtnwidth txtctr" onclick="Castlistview.Deletecartaddwishlist('{{>cartid}}')"><i class="fal fa-heart font__size-20"></i></button>
+            </td>
+            <td class="text-center">
+                <button type="button" class="brk-mini-cart__product--remove remove " onclick="Castlistview.Deletecartlist('{{>cartid}}')">
+                    <i class="fa fa-times-circle"></i>
+                </button>
+            </td>
+        </tr>
+    </script>
+    }

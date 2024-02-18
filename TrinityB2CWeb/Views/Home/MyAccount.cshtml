@@ -1,0 +1,451 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "My Account";
+}
+
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1920x258_1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-60"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">My Account</h2>
+                        <h3 class="brkwhite">Profile details</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-40 mb-40">
+    <input type="hidden" id="shippingaddressid" />
+    @if (@TrinityB2CWeb.CommonClasses.SessionFacade.UserSession != null)
+    {
+        <input type="hidden" id="myaccounthiddencustomervalue" value="@TrinityB2CWeb.CommonClasses.SessionFacade.UserSession.LOGINID" />
+        <input type="hidden" id="hiddensociallogin" value="@TrinityB2CWeb.CommonClasses.SessionFacade.UserSession.ISSOCIALLOGIN" />
+    }
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="wall">
+                <div class="box-border1">
+                    <div class="text-center pt-10 pb-10" id="mainphotodiv">
+                        <img src="~/Content/img/defaultuser.jpg" id="frontprofile" style="border-radius: 50%;max-width:20%" /><br />
+                        <span style="font-weight:600" id="spanpersonname"></span><br />
+                        <span style="color: #716868;font-size: 13px;"><i style="line-height: 2;padding-right: 2px;" class="fa fa-envelope"></i></span><span id="spanpersonemailid"></span><br />
+                        <span style="color: #716868;font-size: 13px;"><i style="line-height: 2;padding-right: 2px;" class="fa fa-mobile" aria-hidden="true"></i></span><span id="spanpersonmobileno"></span><br />
+                        @*<span class="editicon"><i class="fa fa-list-alt" aria-hidden="true"></i></span>*@
+                    </div>
+                    <div class="listli">
+                        <p id="lishippingaddress"><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>Shipping Address</p>
+                        <p id="lichangepassword"><span><i class="fa fa-lock" aria-hidden="true"></i></span>Change Password</p>
+                        <p id="liSetpassword"><span><i class="fa fa-lock" aria-hidden="true"></i></span>Set Password</p>
+                        <p id="lisendfeedback"><span><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Send Feedback</p>
+                        <p id="lilogout"><span><i class="fa fa-sign" aria-hidden="true"></i></span>LogOut</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="wall">
+            <div class="box-border" style="min-height:auto;">
+                <form id="personaldetail-form" style="display:none">
+                    <div class="row header">
+                        <h5>Edit Profile</h5>
+                    </div>
+                    <div class="text-center pt-10 pb-10">
+                        <div class="Profileimgdiv">
+                            <img src="" id="ItemimgPreview" /><br />
+                        </div>
+                        <div>
+                            <label class="linkchangephoto" for="inputItemImage"> Change Photo</label>
+                            <input id="inputItemImage" type="file" accept="image/*" style="display: none;" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">First name <span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="personfirstname" name="personfirstname" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Last name<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="personlastname" name="personlastname" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Date of Birth<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="birthdateaccount" data-provide="datepicker" name="birthdateaccount" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Anniversary</span>
+                            <div class="col-sm-7 p-0">
+                                <input class="width-100" id="anniversarydateaccount" data-provide="datepicker" name="anniversarydateaccount" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Email Id<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="personemailid" name="personemailid" type="email" disabled />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Mobile No<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100 numbersonly" id="personmobileno" name="personmobileno" maxlength="15" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Gender<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0" id="personegender">
+                                <label class="containercheckradio" style="display:inline">
+                                    Male
+                                    <input type="radio" name="radio" value="male" checked="" onclick="">
+                                    <span class="radiocheckmark"></span>
+                                </label>
+                                <label class="containercheckradio" style="display:inline">
+                                    FeMale
+                                    <input type="radio" name="radio" value="female"checked="" onclick="">
+                                    <span class="radiocheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">Country<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <select class="required width-100" name="personcountryname" id="personfindcountry" onchange="MyaccountView.PersonChangecountry()"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5  p-0">State<span class="starcss"> *</span></span>
+                            <div class="col-sm-7  p-0">
+                                <select class="required width-100" name="personstatename" id="personfindstate" onchange="MyaccountView.PersonChangestate()"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row m-0">
+                            <span class="col-sm-5 p-0">City<span class="starcss"> *</span></span>
+                            <div class="col-sm-7  p-0">
+                                <select class="required width-100" name="personcityname" id="personfindcity"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-20" style="text-align:center">
+                        <div class="col-sm-6 pr-5 col-6">
+                           <button class="btnbackdetails" type="button" onclick="MyaccountView.BacktoEdit()" style="float:left"><i class="fa fa-arrow-left bb fa-1x" aria-hidden="true"></i>Back</button>
+                        </div>
+                        <div class="col-sm-6 pl-5  col-6">
+                            <button class="btndetails" type="button" onclick="MyaccountView.SubmitPersonalProfile()"><i class="fa fa-paper-plane bb fa-1x" aria-hidden="true"></i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form id="yourpersonaldetail-form"></form>
+                <form id="change-password-form" style="display:none;">
+                    <div class="row header">
+                        <h5>Change Password</h5>
+                    </div>
+                    <div class="row">
+                        <span class="col-sm-3 pr-0">Old Password<span class="starcss"> *</span></span>
+                        <div class="col-sm-5">
+                            <input class="required width-100" name="oldpassword" id="inputoldpassword" type="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="col-sm-3 pr-0">New Password<span class="starcss"> *</span></span>
+                        <div class="col-sm-5">
+                            <input class="required width-100" name="newpassword" id="inputnewpassword" minlength="8" type="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="col-sm-3 pr-0">Re-Enter Password<span class="starcss"> *</span></span>
+                        <div class="col-sm-5">
+                            <input class="required width-100" name="txtreenter" type="password" data-rule-equalTo="#inputnewpassword" id="inputreenterpassword" />
+                        </div>
+                    </div>
+                    <div class="row mt-21 m-0 col-12 p-0" style="text-align:center">
+                        <button class="btndetails col-sm-2 offset-sm-5" type="button" onclick="MyaccountView.Onchangepassword()">Submit</button>
+                    </div>
+                </form>
+                <form id="change-setpassword-form" style="display:none;">
+                    <div class="row header">
+                        <h5>Set Password</h5>
+                    </div>
+                    <div class="row">
+                        <span class="col-sm-3">New Password<span class="starcss"> *</span></span>
+                        <div class="col-sm-5">
+                            <input class="required width-100" name="setnewpassword" id="inputsetnewpassword" minlength="8" type="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="col-sm-3">Re-Enter Password<span class="starcss"> *</span></span>
+                        <div class="col-sm-5">
+                            <input class="required width-100" name="settxtreenter" type="password" data-rule-equalTo="#inputsetnewpassword" id="setinputreenterpassword" />
+                        </div>
+                    </div>
+                    <div class="row mt-20" style="text-align:center">
+                        <button class="btndetails1 col-sm-2 offset-sm-5" type="button" onclick="MyaccountView.OnSetpassword()">Submit</button>
+                    </div>
+                </form>
+                <form id="shipping-form" style="display:none;">
+                    <div class="row header">
+                        <div class="col-sm-6 col-6 pl-0">
+                            <h5>Address Detail</h5>
+                        </div>
+                        <div class="col-sm-6 col-6 pr-0">
+                            <button type="button" id="addnewbuttonaddress" class="btnnewadddetails1" onclick="" style="float:right">Add New</button>
+                        </div>
+                    </div>
+                    <div class="row" id="displaytwoaddress"></div>
+                </form>
+                <form id="Editshipping-form" style="display:none">
+                    <div class="row header">
+                        <h5>Edit Address</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Person Name<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="txtcontactperson" name="editperosnname" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Country<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <select class="required width-100" name="editcountryname" id="findcountry" onchange="MyaccountView.Changecountry()"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Address<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="txtaddress" name="editaddressname" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">State<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <select class="required width-100" name="editstatename" id="findstate" onchange="MyaccountView.ChangeState()"></select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Landmark<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100" id="txtlandmark" name="editlankmark" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">City<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <select class="required width-100" name="editcityname" id="findcity"></select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Pincode<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100 numbersonly" id="txtpincode" name="editpincode" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row t-1">
+                            <span class="col-sm-5 p-0">Mobile No<span class="starcss"> *</span></span>
+                            <div class="col-sm-7 p-0">
+                                <input class="required width-100 numbersonly" id="txtmobileno" name="editmobileno" type="text" maxlength="15" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-20" style="text-align:center">
+                        <div class="col-sm-6 pr-5 col-6">
+                            <button class="btnbackdetails" type="button" onclick="MyaccountView.BacktoShipping()" style="float:left">Back</button>
+                        </div>
+                        <div class="col-sm-6 pl-5 col-6">
+                            <button class="btndetails" type="button" onclick="MyaccountView.SaveadddShipping()" style="float:right">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form id="feedback-form" style="display:none">
+                    <div class="row header">
+                        <h5>Send Feedback</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 row">
+                            <span class="col-sm-4">Rating<span class="starcss"> *</span></span>
+                            <div class="col-sm-8">
+                                <div class="required" name="rateyo" id="rateYo"></div>
+                                <span style="color:red;display:none" id="rateto-error">This field is required.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 row" id="error-reviewdiv">
+                            <span class="col-sm-4">Review<span class="starcss"> *</span></span>
+                            <div class="col-sm-8">
+                                <textarea class="required" name="inputreview" rows="4" id="inputtxtreview" style="width:100%"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-21 m-0 col-12 p-0">
+                        <button class="btndetails1 col-sm-2 offset-sm-5" type="button" onclick="MyaccountView.btnMasterSubmitFeedback()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        </div>
+</div>
+<link href="~/Content/vendor/jquery-confirm/jquery-confirm.css" rel="stylesheet" />
+@section Scripts{
+
+    <script src="~/Scripts/Home/MyAccount.js"></script>
+    <script id="DataLabelprosonalinfo" type="text/x-jsrender">
+        <div class="row header">
+            <div class="col-sm-6 pl-0">
+                <h5>Personal Information</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 font">
+                @*<i class="fa fa-user" aria-hidden="true"></i>*@ <h1 class="loginfont"><b>Your name :</b></h1>
+                <h2 class="col-sm-7" id="labelperosonnale">{{>firstname}} {{>lastname}}</h2>
+            </div>
+            <div class="col-sm-5 font">
+               <h1 class="loginfont"><b>Gender  :</b></h1>
+                <h2 class="col-sm-7" id="labelgender" style="text-transform: capitalize;">{{>gender}}</h2>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-7 font ">
+                <h1 class="font-w-600"><b>@*<i class="fa fa-birthday-cake" aria-hidden="true">*@  Date of Birth :</i></b></h1>
+                <h2 class="col-sm-7" id="labelbirthdate">{{>labelbrithdate}}</h2>
+            </div>
+            <div class="col-sm-5 font">
+                <h1 class="font-w-600"><b>@*<i class="fa fa-flag" aria-hidden="true">*@  Country :</i></b></h1>
+                <h2 class="col-sm-7" id="labelcountry">{{>contryname}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 font">
+                <h1 class="font-w-600"><b>@*<i class="fa fa-gift" aria-hidden="true">*@  Anniversary :</i></b></h1>
+                <h2 class="col-sm-7" id="labelanniversary">{{>labelanniversarydate}}</h2>
+            </div>
+            <div class="col-sm-5 font">
+                <h1 class="font-w-601"><b>@*<i class="far fa-building">*@State :</i></b></h1>
+                <h2 class="col-sm-7" id="labelstatename">{{>statename}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 font">
+                <h1 class="font-w-600"><b>@*<i class="fas fa-envelope">*@  Email Id :</i></b></h1>
+                <h2 class="col-sm-7" id="labelemailid">{{>emailid}}</h2>
+            </div>
+            <div class="col-sm-5 font">
+                <h1 class="font-w-600"><b>@*<i class="fas fa-road">*@ City :</i></b></h1>
+                <h2 class="col-sm-7" id="labelcity">{{>cityname}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 font">
+                <h1 class="font-w-600"><b>@*<i class="fas fa-mobile-alt">*@  Mobile No :</i></b></h1>
+                <h2 class="col-sm-7" id="labelmobileno">{{>mobileno}}</h2>
+            </div>
+        </div>
+</div>
+        <input type="hidden" value="{{>firstname}}" id="hiddpersonfirstname" />
+        <input type="hidden" value="{{>lastname}}" id="hiddpersonlastname" />
+        <input type="hidden" value="{{>city}}" id="hiddpersoncityid" />
+        <input type="hidden" value="{{>state}}" id="hiddpersonstateid" />
+        <input type="hidden" value="{{>country}}" id="hiddpersoncountryid" />
+        <input type="hidden" value="{{>picture}}" id="hiddenpictureimg" />
+        <div class="mt-20 butt">
+            
+             
+                <button type="button" class="btnbackdetails1 col-sm-2 offset-5" onclick="MyaccountView.ClickonEditprofile()">Edit</button>
+          
+        </div>
+    </script>
+    <script id="Ddlfindcountry" type="text/x-jsrender">
+        <option value="{{>countryid}}">{{>countryname}}</option>
+    </script>
+    <script id="Ddlfindstate" type="text/x-jsrender">
+        <option value="{{>stateid}}">{{>statename}}</option>
+    </script>
+    <script id="Ddlfindcity" type="text/x-jsrender">
+        <option value="{{>cityid}}">{{>cityname}}</option>
+    </script>
+    <script id="Ddlpersonfindcountry" type="text/x-jsrender">
+        <option value="{{>countryid}}">{{>countryname}}</option>
+    </script>
+    <script id="Ddlpersonfindstate" type="text/x-jsrender">
+        <option value="{{>stateid}}">{{>statename}}</option>
+    </script>
+    <script id="Ddlpersonfindcity" type="text/x-jsrender">
+        <option value="{{>cityid}}">{{>cityname}}</option>
+    </script>
+    <script id="Datadisplaytwoaddress" type="text/x-jsrender">
+        <div class="col-sm-6">
+            <div style="border: 1px solid #ddd;">
+                <div class="pl-10 pt-10 pb-10 m-h-120 mt-10 mr-l-5 mr-l-5">
+                    <span class="font__size-18 line__height-2" id="txtcontactpersonname{{>shippingaddressid}}">{{>contactpersonname}}</span>
+                    {{if defaualtaddress == 1}}
+                    <span class="colordefaultadd">Default Address</span>
+                    {{/if}}
+                    <span class="custom-radios">
+                        <span style="float:right">
+                            <input type="radio" id="deft{{>shippingaddressid}}" onclick="MyaccountView.Setdefault('{{>shippingaddressid}}')" name="color" value="color-1" {{if defaualtaddress == 1}} checked {{/if}} />
+                            <label for="deft{{>shippingaddressid}}">
+                                <span>
+                                </span>
+                            </label>
+                        </span>
+                    </span>
+                    <br />
+                    <span class="font__family-open-sans address-detail">
+                        {{>fulladdress}}
+                    </span><br />
+                    <span class="font__family-open-sans address-detail">Mobile: {{>mobileno}}</span>
+
+                    <input type="hidden" id="hiddenaddress{{>shippingaddressid}}" value="{{>address}}" />
+                    <input type="hidden" id="hiddencityid{{>shippingaddressid}}" value="{{>city}}" />
+                    <input type="hidden" id="hiddencityname{{>shippingaddressid}}" value="{{>cityname}}" />
+                    <input type="hidden" id="hiddenstateid{{>shippingaddressid}}" value="{{>state}}" />
+                    <input type="hidden" id="hiddenstatename{{>shippingaddressid}}" value="{{>statename}}" />
+                    <input type="hidden" id="hiddencountryid{{>shippingaddressid}}" value="{{>country}}" />
+                    <input type="hidden" id="hiddencountryname{{>shippingaddressid}}" value="{{>countryname}}" />
+                    <input type="hidden" id="hiddenpincode{{>shippingaddressid}}" value="{{>pincode}}" />
+                    <input type="hidden" id="hiddenlandmark{{>shippingaddressid}}" value="{{>landmark}}" />
+                    <input type="hidden" id="hiddenmobileno{{>shippingaddressid}}" value="{{>mobileno}}" />
+                </div>
+                <div class="offset-lg-9 offset-md-8 col-10">
+                    <span class="pr-5 editprofile" id="editaddressDetail80" onclick="MyaccountView.AddressEdit('{{>shippingaddressid}}')">
+                        <i class="fal fa-edit fs-17"></i>
+                    </span>
+                    <span class="pr-5" onclick="MyaccountView.AddressDelete('{{>shippingaddressid}}')">
+                        <i class="fal fa-trash-alt cl-red fs-17"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </script>
+}

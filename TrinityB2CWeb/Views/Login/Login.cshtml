@@ -1,0 +1,255 @@
+﻿@model TrinityB2CWeb.Models.LoginViewModel
+    <style>
+ 
+    </style>
+<div class="main-wrapper" id="loginmodalshowdiv">
+    <main class="main-container loginmaincontainer">
+        <section class="">
+            <div class="container-fluid">
+                <div class="row row-no-gutter">
+                    <div class="col-12 col-lg-5 order-2 order-lg-1">
+                        <div class="full-screen position-relative d-flex flex-column justify-content-center align-items-center" id="particles-js">
+                            <div class="brk-backgrounds brk-base-bg-gradient-15 brk-abs-overlay" data-brk-library="component__backgrounds_css,component__backgrounds_js,assets_particleground">
+                                <div class="brk-backgrounds__canvas brk-particles-standart"></div>
+                            </div><a class="z-index-2 mb-60 pl-15 pr-15" href="javascript:void(0)"><img src="~/Content/img/ProjectImg/NAME_PLATE07.png" alt="logo" class=""> </a><a id="btnredister" class="btn-backgrounds btn-backgrounds_transparent btn-backgrounds_left-icon font__family-montserrat font__weight-normal text-uppercase font__size-13 z-index-2 text-center" style="cursor:pointer;padding-left:85px; padding-right: 60px;color:#fff!important" data-brk-library="component__button">Register<span class="before"><i class="fas fa-arrow-left"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 order-1 order-lg-2">
+                        <div class="full-screen d-flex align-items-center">
+                            <div class="container-fluid mt-40">
+                                <div class="row" id="logindiv">
+                                    <div class="col-12 logindiv">
+                                        <h1 class="font__family-montserrat font__weight-bold line__height-42 mt-0 text-center">LOGIN</h1>
+                                        <form id="loginformid" class="forminputcss">
+                                            <div class="row text-center mt-10 mr-10" style="text-align:center">
+                                                <div class="col-sm-5 offset-sm-1" style="display:none;">
+                                                    <button type="button" onclick="fb_login()" class="btn font__family-montserrat font__weight-bold text-uppercase font__size-13 btnfacebook clrwhite">
+                                                        <i class="fab fa-facebook-f"></i>Facebook
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <button id="gmailsignin-button" type="button" class="btn font__family-montserrat font__weight-bold text-uppercase font__size-13 googlecolor clrwhite">
+                                                        <i class="fab fa-google"></i>Google
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="signin row" style="text-align:center;">
+                                                <div class="borderrl col-sm-5"></div>
+                                                <div id="orcontent" class="col-sm-2">OR</div>
+                                                <div class="borderrl col-sm-5"></div>
+                                            </div>
+                                            <div class="row login-msg mt-10" style="text-align:center;display:none" id="errorlogindiv">
+                                                <div class="col-sm-12">
+                                                    <span style="color:red;word-wrap: break-word" id="errormsg"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10">
+                                                <div class="col-sm-12">
+                                                    <input type="text" placeholder="Enter Email Id Or Mobile No *" name="loginemailmobile" class="width-100 mrgt-10 required" id="txtloginusername" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="password" placeholder="Enter Password *" name="loginpassword" class="width-100 mrgt-10 required" id="txtloginpassword">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 mt-10">
+                                                    <label class="containercheck" for="remeberchecked">
+                                                        Remember Me
+                                                        <input type="checkbox" id="remeberchecked" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    @*<input id="remeberchecked" name="checkbox" type="checkbox" checked="checked">
+                                                    <label class="brk-form-checkbox-label" for="checkbox-strict-1">Remember Me</label>*@
+                                                </div>
+                                            </div>
+                                            <div class="mb-30 d-flex flex-wrap center justify-content-between">
+                                                <button class="btnloginform btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-30 mr-10" data-brk-library="component__button" type="button" onclick="BtnDoLogin()">
+                                                    Login Now
+                                                    <span class="before"><i class="far fa-hand-point-right"></i></span>
+                                                </button>
+                                                <a href="javascropt:void(0)" id="lableforgot" onclick="lostpassword()" class="btnloginform btn-backgrounds btn-backgrounds_no-icon btn-backgrounds btn-backgrounds_white mt-30 btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center" data-brk-library="component__button">Lost your password?</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row" style="display:none" id="showforgotpassdiv">
+                                    <div class="col-12 logindiv">
+                                        <h1 class="font__family-montserrat font__weight-bold line__height-42 mt-0 text-center">Reset Password</h1>
+                                        <form  class="forminputcss" id="registerforgotid">
+                                            <div class="row mt-10" style="text-align:center;display:none" id="errorusernotregister">
+                                                <div class="col-sm-12">
+                                                    <span style="color:red;word-wrap: break-word" id="errormsgforforgotpass"></span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="forgotusername" placeholder="Enter Email Or Mobile No" class="width-100 mrgt-10 required" id="forgotusername">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mb-30 d-flex flex-wrap justify-content-between col-sm-6 offset-sm-3">
+                                                    <button type="button" class="btnloginform btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-10 mr-10" data-brk-library="component__button" onclick="Nextbtnresetpass()">Next <span class="before"><i class="far fa-hand-point-right"></i></span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row" style="display:none" id="Otpvarificationdiv">
+                                    <div class="col-12 logindiv">
+                                        <h1 class="font__family-montserrat font__weight-bold line__height-42 mt-0 text-center">OTP Verification</h1>
+                                        <form class="" id="otpvarifyformid" style="text-align:center;">
+                                            <p class="mt-10 colorotp">We have sent you <span>OTP</span> to you Email or Mobile No</p>
+                                            <p class="mt-10 errorotp" id="errorotptxt" style="display:none"></p>
+                                            <p class="mt-10" id="timer"></p>
+                                            <div class="row">
+                                                <div class="fourdigitinpit">
+                                                    <div id="divOuter">
+                                                        <div id="divInner">
+                                                            <input id="partitioned" type="text" maxlength="4" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-10">
+                                                <div class="col-sm-6">
+                                                    <button type="button" id="btnclickreset" class="btnloginform btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-30 mr-10" data-brk-library="component__button" onclick="BtnResendOtp()">Resend OTP</button>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <button type="button" class="btnloginform btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-30 mr-10" data-brk-library="component__button" onclick="BtnVerifyOtp()">Verify OTP</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row" style="display:none" id="OldNewPassworddiv">
+                                    <div class="col-12 logindiv">
+                                        <h1 class="font__family-montserrat font__weight-bold line__height-42 mt-0 text-center">Enter New Password</h1>
+                                        <form class="forminputcss" id="enternewpassformid">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="password" name="addnewpassword" placeholder="Enter New Password" class="width-100 mrgt-10 required" minlength="8" id="addnewpassword">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <input type="password" name="addnewconformpassword" placeholder="Conform New Password" class="width-100 mrgt-10 required" data-rule-equalTo="#addnewpassword" id="addnewconformpassword">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mb-30 d-flex flex-wrap justify-content-between col-sm-6 offset-sm-3">
+                                                    <button type="button" class="btnloginform btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-30 mr-10" data-brk-library="component__button" onclick="SubmitNewPassword()">Submit <span class="before"><i class="far fa-hand-point-right"></i></span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <main class="main-container registermaincontainer" style="display:none">
+        <section class="">
+            <div class="container-fluid">
+                <div class="row row-no-gutter">
+                    <div class="col-12 col-lg-5 order-2 order-lg-1">
+                        <div class="full-screen position-relative d-flex flex-column justify-content-center align-items-center">
+                            <div class="brk-backgrounds brk-base-bg-gradient-15 brk-abs-overlay" data-brk-library="component__backgrounds_css,component__backgrounds_js,assets_particleground">
+                                <div class="brk-backgrounds__canvas brk-particles-standart">
+                                </div>
+                            </div><a href="javascript:void(0)" class="z-index-2 mb-60 pl-15 pr-15"><img src="~/Content/img/ProjectImg/NAME_PLATE07.png" alt="logo" class=""> </a><a href="javascript:void(0)" id="btnlogin" class="btn-backgrounds btn-backgrounds_transparent btn-backgrounds_left-icon font__family-montserrat font__weight-normal text-uppercase font__size-13 z-index-2 text-center" style="padding-left:85px; padding-right: 60px;" data-brk-library="component__button">Login<span class="before"><i class="fas fa-arrow-left"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 order-1 order-lg-2">
+                        <div class="full-screen d-flex align-items-center">
+                            <div class="container-fluid">
+                                <div class="row logindiv">
+                                    <div class="col-12 col-md-12">
+                                        <h1 class="font__family-montserrat font__weight-bold line__height-42 mt-0 text-center">REGISTER</h1>
+                                        <form action="#" class="forminputcss" id="registerformid">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="text" name="firstname" placeholder="First Name *" id="txtfirstname" class="required width-100">
+                                                </div>
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="text" name="lastname" placeholder="Last Name *" id="txtlastname" class="required width-100">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="email" name="emailid" placeholder="Email Id *" id="txt_email" class="required width-100">
+                                                    <lable id="errorexistemail" style="display:none"></lable>
+                                                </div>
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="text" name="mobilename" placeholder="Mobile No *" class="width-100 required" id="txtmobile" maxlength="15">
+                                                    <lable id="errorexistmobile" style="display:none"></lable>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="password" name="password" placeholder="Password *" id="txt_password" class="width-100 required" minlength="8">
+                                                </div>
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input type="password" name="confirmpassword" value="" data-rule-equalTo="#txt_password" placeholder="Confirm Password *" id="txt_confrompassword" class="width-100 required" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input class="width-100 form-control" id="txtbirthdate" name="effactivedate" placeholder="Birtdate" type="text" data-provide="datepicker" />
+                                                </div>
+                                                <div class="col-xl-6 col-md-6">
+                                                    <input class="width-100 form-control" id="txtanniversary" name="annidate" placeholder="Anniversarydate" type="text" data-provide="datepicker" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6 gen" id="signupgender">
+                                                    @*<label class="brk-form-radio">
+                                                        <input id="radiomale" name="genderradio" type="radio" value="male" checked="checked" class="rendered">
+                                                        <span class="radio-custom"></span>
+                                                    </label>
+                                                    <label for="radiomale" class="brk-form-radio-label">Male</label>
+                                                    <label class="brk-form-radio">
+                                                        <input id="radiofemale" name="genderradio" type="radio" value="female" class="rendered">
+                                                        <span class="radio-custom"></span>
+                                                    </label>
+                                                    <label for="radiofemale" class="brk-form-radio-label">Female</label>*@
+                                                    <label class="containercheckradio" style="display:inline">
+                                                        Male
+                                                        <input type="radio" name="genderradio" value="male" checked="checked" onclick="">
+                                                        <span class="radiocheckmark"></span>
+                                                    </label>
+                                                    <label class="containercheckradio" style="display:inline">
+                                                        FeMale
+                                                        <input type="radio" name="genderradio" value="female" checked="" onclick="">
+                                                        <span class="radiocheckmark"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-xl-6 col-md-6" style="margin-bottom:10px!important">
+                                                    <select class="required width-100" name="signupcountryname" id="signupfindcountry" onchange="Loginview.Signupcountrychange()"></select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-6 offset-sm-2">
+                                                    <a href="javascript:void(0)" id="btnclicksignup" class="btn-backgrounds btn-backgrounds btn-backgrounds_white btn-backgrounds_left-icon font__family-montserrat font__weight-bold text-uppercase font__size-13 z-index-2 text-center mt-30 mr-10" data-brk-library="component__button">
+                                                        Sign Up <span class="before"><i class="far fa-hand-point-right"></i></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+

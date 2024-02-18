@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Order History";
+}
+<style>
+    #datacartdesigns td {
+        padding: 9px 9px;
+    }
+</style>
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1920x258_1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-60"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">Order History</h2>
+                        <h3 class="brkwhite">See all our designs</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mb-40 mt-40" id="orderdata"></div>
+<div class="modal fade" id="Ordercancelmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document" style="margin-top:180px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancel Order</h5>
+            </div>
+            <div class="modal-body" id="cancelformid">
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2 control-label">Order Id : </label>
+                    <label class="col-sm-5 colorgray" id="modalorderid"></label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Placed On : </label>
+                    <label class="col-sm-5 colorgray" id="modalplacedondate"></label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Cancel Items</label>
+                    <div class="col-sm-5">
+                        <table class="table-bordered cancelitemtable" id="tableordercancelitems"></table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Reason <span class="starcss"> *</span></label>
+                    <div class="col-sm-5 brk-sc-sorting__sort-select d-inline brk-form-round">
+                        <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                            <select name="select" class="form-control required" id="cancelreason"></select>
+                        </div>
+                        <label class="label-error" id="cancelreason-error" style="display:none;">This field is required.</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Description</label>
+                    <div class="col-sm-5">
+                        <textarea rows="4" id="remarkdescription"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btndetails" onclick="OrderHistoryView.BindSubmitCancel()">Submit</button>
+                <button type="button" class="cancelbtncss" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Orderreturnmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document" style="margin-top:180px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Return Order</h5>
+            </div>
+            <div class="modal-body" id="cancelformid">
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2 control-label">Order Id : </label>
+                    <label class="col-sm-5 colorgray" id="modalorderretunrid"></label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Placed On : </label>
+                    <label class="col-sm-5 colorgray" id="modalplacedonretunrdate"></label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Return Items</label>
+                    <div class="col-sm-5">
+                        <table class="table-bordered cancelitemtable" id="tableorderreturnitems"></table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Reason <span class="starcss"> *</span></label>
+                    <div class="col-sm-5 brk-sc-sorting__sort-select d-inline brk-form-round">
+                        <div class="brk-sc-sorting__sort-select d-inline brk-form-round">
+                            <select name="select" class="form-control required" id="returnreason"></select>
+                        </div>
+                        <label class="label-error" id="returnreason-error" style="display:none;">This field is required.</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 offset-sm-2">Description</label>
+                    <div class="col-sm-5">
+                        <textarea rows="4" id="remarkreturndescription"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btndetails" onclick="OrderHistoryView.BindSubmitReturn()">Submit</button>
+                <button type="button" class="cancelbtncss" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Order/OrderHistory.js"></script>
+    <script id="DataCancalationreason" type="text/x-jsrender">
+        <option value="{{>ordercancelreasonid}}">{{>ordercancelreason}}</option>
+    </script>
+    <script id="Datareturnationreason" type="text/x-jsrender">
+        <option value="{{>orderreturnreasonid}}">{{>orderreturnreason}}</option>
+    </script>
+    <script id="Dataorderhistory" type="text/x-jsrender">
+        <div class="mb-10">
+            <div class="row borderorder-1 pt-10 pb-10">
+                <div class="col-sm-10 col-8">
+                    <span class="headertitle">Order Id  </span><span class="headertitle" id="orderid{{>custordermasterid}}">{{>orderid}}</span><br />
+                    <span class="colorgray">Placed On  </span><span class="colorgray" id="placedate{{>custordermasterid}}">{{>orderdate}}</span><br />
+                    <span class="statuscss">{{>orderstatus}}</span>
+                </div>
+                <div class="col-sm-2 col-4">
+                    <button class="btndetails" onclick="OrderHistoryView.Ordertacking('{{>orderid}}')">Details</button>
+                </div>
+            </div>
+            <div class="row bt-none m-0" style="border-bottom:none;">
+                {{for orderlist.orderdetails}}
+                <div class="col-sm-6" style="border-top:1px solid #ddd">
+                    <div class="row mainitemdiv{{>custordermasterid}}" style="border-right: 1px dotted #ddd;">
+                        <div class="col-sm-3 pt-20 pb-20">
+                            <img src="{{>imagepath}}" id="itemimage{{>custorderitemid}}" class="borderorder itemimage{{>custordermasterid}}" alt="alt">
+                        </div>
+                        <div class="col-sm-7 col-10 pt-20">
+                            <span class="font__weight-bold font__size-16 itemdesignno{{>custordermasterid}}" id="itemdesignno{{>custorderitemid}}">{{>designno}}</span><br />
+                            <span class="designprice newp colorgray designprice{{>custordermasterid}}" id="designprice{{>custorderitemid}}" data-currency="{{>currencytype}}"></span>
+                            <input id="iprrel{{>custorderitemid}}" type="hidden" value="{{>total_amt}}" /><br />
+                            {{if orderstatus != null}}
+                            <span class="statuscss">{{>orderstatus}}</span><br />
+                            {{/if}}
+                            {{if giftwrapper == 1}}
+                            <span><i class="fa fa-gift" style="font-size:17px;color: #ec2626;"></i></span>
+                            {{/if}}
+                        </div><input type="hidden" class="hiddenitemid{{>custordermasterid}}" value="{{>custorderitemid}}" />
+                        <div class="col-sm-1 col-1 pt-20 checkboxdiv{{>custordermasterid}}" style="display:none" id="checkboxdiv{{>custorderitemid}}">
+                            {{if iscancel == 0 || isreturnable == 1}}
+                            <label class="containercheck">
+                                <input type="checkbox" class="checktems{{>custordermasterid}} checkselected" id="checktems{{>custorderitemid}}">
+                                <span class="checkmark"></span>
+                            </label>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/for}}
+            </div>
+            <div class="row bt-none pt-10 pb-10 m-0" style="border-top: 1px solid #ddd;">
+                <div class="col-sm-8 col-7 text-1">
+                    {{if deliverydate != null}}
+                    <span class="colorgray">Deliverd On  </span><span class="colorgray">{{>deliverydate}}</span><br />
+                    {{/if}}
+                </div>
+                {{if fullordercancel == 0}}
+                <div class="col-sm-4 col-5">
+                    <button class="btncancelorder mr-l-5" id="btncancelorder{{>custordermasterid}}" onclick="OrderHistoryView.Btncancelorder('{{>custordermasterid}}')">Cancel Order</button>
+                    <button class="btncancelorder mr-l-5 mr-r-5" id="btncancelyes{{>custordermasterid}}" style="display:none" onclick="OrderHistoryView.Btncancelorderno('{{>custordermasterid}}')">No</button>
+                    <button class="btncancelorder mr-l-5 mr-r-5" id="btncancelno{{>custordermasterid}}" style="display:none" onclick="OrderHistoryView.Btncancelorderyes('{{>custordermasterid}}')">Yes</button>
+                </div>
+                {{/if}}
+                {{if fullordercancel == 1 && fullorderreturnable == 1}}
+                <div class="col-sm-4 col-5">
+                    <button class="btncancelorder mr-l-5" id="btnreturnorder{{>custordermasterid}}" onclick="OrderHistoryView.Btnreturnorder('{{>custordermasterid}}')">Return Order</button>
+                    <button class="btncancelorder mr-l-5 mr-r-5" id="btnreturnyes{{>custordermasterid}}" style="display:none" onclick="OrderHistoryView.Btnreturnorderno('{{>custordermasterid}}')">No</button>
+                    <button class="btncancelorder mr-l-5 mr-r-5" id="btnreturnno{{>custordermasterid}}" style="display:none" onclick="OrderHistoryView.Btnreturnorderyes('{{>custordermasterid}}')">Yes</button>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </script>
+}

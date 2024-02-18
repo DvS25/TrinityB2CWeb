@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Terms and Condition";
+}
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1920x258_1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-60"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat">Terms and Condition</h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        <h3 class="brk-white-font-color font__family-montserrat font__size-18 line__height-21 text-uppercase mb-15">See all our designs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-brk-library="component__accordions" class="mt-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mb-50">
+                <div class="ml-20 mr-20" data-brk-library="component__accordions">
+                    <div id="bindtermsdata" class="accordion accordion-simple accordion-simple-scale" role="tablist" aria-multiselectable="true">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Home/TermsAndCondition.js"></script>
+    <script id="Datatermsdata" type="text/x-jsrender">
+        <div class="card">
+            <div class="card-header card-header-sm text-center pl-25 pr-45" role="tab" id="headingOne{{>rowno}}" data-toggle="collapse" href="#collapseOne{{>rowno}}" aria-expanded="true" aria-controls="collapseOne{{>rowno}}">
+                <h5 class="mb-0 font__family-montserrat font__weight-semibold letter-spacing-20 font__size-16 line__height-16 position-relative">
+                    <span style="position: absolute;left:0;">{{>rowno}}.<a class="ml-10 termsheader text-left" id="termsheader{{>rowno}}" data-toggle="collapse" href="#collapseOne{{>rowno}}" aria-expanded="true" aria-controls="collapseOne{{>rowno}}">{{>name}}</a></span>
+                    <input id="ipr{{>rowno}}" type="hidden" value="{{>name}}" />
+                </h5>
+                <a class="card-toggle-icon brk-base-font-color"><span class="arrow"></span></a>
+            </div>
+
+            <div id="collapseOne{{>rowno}}" class="collapse collapsefirstchild" role="tabpanel" aria-labelledby="headingOne{{>rowno}}">
+                <div class="card-block text-center font__family-open-sans bg-position_bottom-right bg-norepeat">
+                    {{for details.detailsterms}}
+                    <div class="row">
+                        <div class="col-sm-12 ptag">
+                            <p class="text-left mt-1 font__family-open-sans letter-spacing-40 font__size-16 line__height-26">{{>description}}</p>
+                        </div>
+                    </div>
+                    {{/for}}
+                </div>
+            </div>
+
+        </div>
+    </script>
+}

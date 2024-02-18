@@ -1,0 +1,46 @@
+﻿/*#btnloginmodalclose{
+    position: absolute;
+    right: 7px;
+    font-size: 50px;
+    z-index: 9999;
+}*/
+
+#btnloginmodalclose{
+    position: absolute;
+    right: 7px;
+    font-size: 50px;
+    z-index: 9999;
+}
+.btnloginform {
+   min-width: 212px !important;
+}
+.logindiv {
+    position: relative;
+    top: -20px;
+}
+.brk-form-checkbox{
+    margin-top:10px!important;
+}
+.brk-form-checkbox-label{
+    margin-top:8px!important;
+}
+.brk-form-radio-label{
+    padding-left: 2px!important;
+    margin-top: 25px!important;
+    margin-right: 7px!important;
+}
+.brk-social-links__item {
+    padding: 10px 6px;
+    line-height:15px;
+}
+.brk-social-links__item i {
+     line-height:25px;
+}
+@media (max-width:991px) {
+    .logindiv {
+        margin-top: 40%;
+    }
+
+}
+
+

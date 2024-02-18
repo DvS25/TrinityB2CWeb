@@ -1,0 +1,402 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ProductList";
+}
+
+<div class="breadcrumbs__section breadcrumbs__section-thin brk-bg-center-cover" style="background-image: url(../../Content/img/1.jpg)" data-brk-library="component__breadcrumbs_css">
+    <span class="brk-abs-bg-overlay brk-bg-grad opacity-40"></span>
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <div class="row align-items-center top-head">
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex justify-content-lg-end justify-content-start pr-40 pr-xs-0 breadcrumbs__title">
+                        <h2 class="brk-white-font-color font__weight-thin font__size-48 line__height-68 font__family-montserrat" id="breadcategory"></h2>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 top-pad">
+                    <div class="pt-25 pb-35 position-static position-lg-relative breadcrumbs__subtitle">
+                        <h3 class="brk-white-font-color font__family-montserrat font__size-18 line__height-21 text-uppercase mb-15">@ViewBag.Subcategoryname</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*@if (@TrinityB2CWeb.CommonClasses.SessionFacade.UserSession == null)
+    {
+        <input type="hidden" value="0" class="Islogin"/>
+    }
+    else
+    {
+        <input type="hidden" value="1" class="Islogin"/>
+    }*@
+
+
+<div class="main-wrapper" id="productmaindivlist">
+    <main class="main-container">
+        <div class="container-fluid m">
+            <input type="hidden" value="@ViewBag.Subcategoryname" id="productsubname" />
+            <input type="hidden" value="@ViewBag.CategoryType" id="typeofcategory" />
+            <input type="hidden" value="@ViewBag.Collectionkeyword" id="hiddencollectionkeyword" />
+            <input type="hidden" value="@ViewBag.Collectiondesignno" id="hiddencollectiondesignno" />
+            <input type="hidden" value="@ViewBag.filter" id="hiddenfiltervalue" />
+            <input type="hidden" value="@ViewBag.Pricefilter" id="hiddenPricefilter" />
+            <input type="hidden" value="@ViewBag.MetalWeightfilter" id="hiddenMetalWeightfilter" />
+            <input type="hidden" value="@ViewBag.DiamondWeightfilter" id="hiddenDiamondWeightfilter" />
+            <input type="hidden" value="@ViewBag.MetalPurityfilter" id="hiddenMetalPurityfilter" />
+            <input type="hidden" value="@ViewBag.MetalColorfilter" id="hiddenMetalColorfilter" />
+            <input type="hidden" value="@ViewBag.Shapefilter" id="hiddenShapefilter" />
+            <input type="hidden" value="@ViewBag.Tagvalue" id="hiddentagvaluefilter" />
+
+            <input type="hidden" value="@ViewBag.filter" id="Mobilehiddenfiltervalue" />
+            <input type="hidden" id="design_row_no" />
+            <input type="hidden" id="design_row_nolistview" />
+            <input type="hidden" id="muldesigncode" />
+            <div id="myHeader">
+                <div class="container-fluid plr-0 hidden-sm">
+                    <div class="listingfilter__valuediv main-wrapper mt-20">
+                        <div class="columns row" id="filtdiv">
+                            <ul class="clearfix col-sm-11" id="listfiltertag"></ul>
+                            <ul class="col-sm-1" id="clerfilterid" style="display:none">
+                                <li class="liclr" onclick="Clearfilterfunction()">Clear</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row fixdiv">
+                    <div class="col-12 col-lg-4 col-xl-2 order-xs-1 order-lg-1">
+
+                        <div class="border-1 row">
+                            <div class="brs-sidebar__title col-10">
+                                <h3 class="font__family-montserrat font__size-21 font__weight-bold line__height-22">Filter</h3>
+                            </div>
+                            <div class="col-2 toggle-1">
+                                <div id="mySidenav" class="sidenav">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                    <div class="col-12 col-lg-8 col-xl-10 order-xs-2 order-lg-2 p-0 fill-2">
+                                        <div class="pt-0 brk-sc-sorting" data-brk-library="component__widgets,jquerySlider,component__form">
+                                            <span class="brk-dark-font-color brk-sc-sorting__label font__family-open-sans font__size-14 font__weight-normal line__height-14 mr-15">Sort by</span>
+                                            <div class="brk-sc-sorting__sort-select d-inline brk-form-round mr-20 col-md-4 col-sm-4">
+                                                <select name="select" onchange="MobileDropdownfilter()" class="but" id="Mobiledropdownfilter">
+                                                    <option value="Default">Default</option>
+                                                    <option value="designno">Design No</option>
+                                                    <option value="whatisnew">What's New</option>
+                                                    <option value="popular">Popular</option>
+                                                    <option value="pricelowtohigh">Price Low > High</option>
+                                                    <option value="ratehightolow">Rating Hight < Low</option>
+                                                </select>
+                                            </div>
+                                            <span id="recordcount"></span>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="Mobilelistingfilter__valuediv main-wrapper mt-20">
+                                            <div class="columns row" id="Mobilefiltdiv">
+                                                <ul class="col-sm-1" id="Mobileclerfilterid" style="display:none">
+                                                    <li class="liclr" onclick="MobileClearfilterfunction()">Clear</li>
+                                                </ul>
+                                                <ul class="clearfix col-sm-11" id="Mobilelistfiltertag"></ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-4  col-xl-2 order-xs-1 order-lg-1">
+                                        <div class="brs-sidebar" data-brk-library="component__widgets">
+                                            <div class="brk-form brk-form-strict" data-brk-library="component__form">
+                                                <form>
+                                                    <div class="row fill">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Price</h4>
+                                                        <div class="col-md-12 p-0" style="overflow-y:auto;max-height:170px" id="Mobiledivprice">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Weight</h4>
+                                                        <div class="col-md-12 p-0" style="overflow-y:auto;max-height:170px" id="Mobiledivmetalweight">
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Purity</h4>
+                                                        <div class="col-md-12" style="overflow-y:auto;max-height:170px">
+                                                            <ul class="brk-tags brk-tags_solid font__family-montserrat btncustome gp-p" id="Mobiledivmetalpurity" data-brk-library="component__tags"></ul>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Color</h4>
+                                                        <div class="col-md-12" style="overflow-y:auto;max-height:170px">
+                                                            <ul class="brk-tags brk-tags_solid font__family-montserrat btncustome gp-p" id="Mobiledivmetalcolor" data-brk-library="component__tags"></ul>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Diamond Shape</h4>
+                                                        <div class="col-md-12">
+                                                            <div class="row diamond_shape" id="Mobiledivdiamondshape"></div>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Diamond Weight</h4>
+                                                        <div class="col-md-12 p-0" style="overflow-y:auto;max-height:170px" id="Mobiledivdiamondweight"></div>
+                                                    </div>
+                                                    <hr />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-8 col-xl-10 order-xs-2 order-lg-2 p-0 fill-1">
+                        <div class="brk-sc-sorting" data-brk-library="component__widgets,jquerySlider,component__form">
+                            @*<div class="brk-sc-view-swiper col-view mr-20">
+                                    <a href="javacript:void(0)" onclick="showlistdetail()" class="brk-sc-view-swiper__btn">
+                                        <i class="fas fa-bars font__size-14"></i>
+                                    </a>
+                                    <a href="javacript:void(0)" onclick="showgriddetail()" class="brk-sc-view-swiper__btn">
+                                        <i class="fas fa-th font__size-14"></i>
+                                    </a>
+                                </div>*@
+                            <span class="brk-dark-font-color brk-sc-sorting__label font__family-open-sans font__size-14 font__weight-normal line__height-14 mr-15">Sort by</span>
+                            <div class="brk-sc-sorting__sort-select d-inline brk-form-round mr-20 col-md-4 col-sm-4">
+                                <select name="select" onchange="Dropdownfilter()" class="but" id="dropdownfilter">
+                                    <option value="Default">Default</option>
+                                    <option value="designno">Design No</option>
+                                    <option value="whatisnew">What's New</option>
+                                    <option value="popular">Popular</option>
+                                    <option value="pricelowtohigh">Price Low > High</option>
+                                    <option value="ratehightolow">Rating Hight < Low</option>
+                                </select>
+                            </div>
+                            <div class="recordcount">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row content">
+                <div class="col-12 col-lg-4  col-xl-2 order-xs-1 order-lg-1 fill-1">
+                    <div class="brs-sidebar" data-brk-library="component__widgets">
+                        <div class="brk-form brk-form-strict" data-brk-library="component__form">
+                            <form>
+                                <div class="row fill fill-1">
+                                    <div class="col-md-6 col-lg-12 bor">
+                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Price</h4>
+                                        <div class="col-md-12 p-0 divprice" style="overflow-y:auto;max-height:170px">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-12">
+                                        <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Weight</h4>
+                                        <div class="col-md-12 p-0 divmetalweight" style="overflow-y:auto;max-height:170px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Purity</h4>
+                                    <div class="col-md-12" style="overflow-y:auto;max-height:170px">
+                                        <ul class="brk-tags brk-tags_solid font__family-montserrat btncustome gp-p divmetalpurity" data-brk-library="component__tags"></ul>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Metal Color</h4>
+                                    <div class="col-md-12" style="overflow-y:auto;max-height:170px">
+                                        <ul class="brk-tags brk-tags_solid font__family-montserrat btncustome gp-p divmetalcolor" data-brk-library="component__tags"></ul>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Diamond Shape</h4>
+                                    <div class="col-md-12">
+                                        <div class="row diamond_shape divdiamondshape"></div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <h4 class="font__family-montserrat font__size-21 font__weight-bold line__height-22 p-3">Diamond Weight</h4>
+                                    <div class="col-md-12 p-0 divdiamondweight" style="overflow-y:auto;max-height:170px"></div>
+                                </div>
+                                <hr />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8 col-xl-10  order-xs-2 order-lg-2 mar">
+
+                    @*<div>
+                            <div class="row" id="listviewdetaildiv" style="display:none"></div>
+                            <div class="col-12" id="viewmordesignlist" style="display:none">
+                                <div class="text-center mt-110 mb-80"><a href="javascript:void(0)" class="icon__btn icon__btn-anim icon__btn-md icon__btn-invert"><span class="before"></span> <i class="fal fa-sync" aria-hidden="true"></i> <span class="after"></span> <span class="bg"></span></a></div>
+
+                            </div>
+                        </div>*@
+                    <div>
+                        <div class="row" id="productlistdata"></div>
+                        <div class="col-sm-12 nodatafound" style="display:none" id="nodatadiv">
+                            <img src="~/Content/img/search.jpg"/>
+                            @*<label>There are no designs you are looking for..</label>*@
+                        </div>
+                        <div class="col-12 text-center view" id="viewmordesign">
+                            <button type="button" class="btnbackdetails text-centermb-40">View More Designs</button>
+                            @*<div class="text-center mt-110 mb-80"><a href="javascript:void(0)" class="icon__btn icon__btn-anim icon__btn-md icon__btn-invert"><span class="before"></span> <i class="fal fa-sync" aria-hidden="true"></i> <span class="after"></span> <span class="bg"></span></a></div>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="text-center" id="emptyproductdatalist" style="display:none">
+    <img src="~/Content/img/search.jpg" style="width:25%;" />
+</div>
+@section Scripts{
+    <script src="~/Scripts/Product/ProductList.js"></script>
+    <script id="Dataproductlist" type="text/x-jsrender">
+        {{if ratio=='1:2'}}
+        <div class="col-12 col-md-6 col-sm-6 col-xl-6 mb-10 orderrow pdlr adsimg pad">
+            <img src="{{>imagepath}}" alt="Trinity Image" class="brk-sc-card-horizontal__img b-t-l b-t-r">
+        </div>
+
+        {{else ratio=='1:1'}}
+        <div class="col-12 col-md-6 col-sm-6 col-xl-3 mb-10 orderrow pdlr adsimg pad ">
+            <img src="{{>imagepath}}" alt="Trinity Image" class="brk-sc-card-horizontal__img b-t-l b-t-r">
+        </div>
+        {{else}}
+        <div class="col-12 col-md-6 col-xl-3 col-sm-6 mb-10 orderrow ptoductpadding pad">
+            <div class="brk-sc-card-horizontal" data-brk-library="component__flip_box,component__elements,fancybox">
+                <div class="br-5">
+                    <div class="">
+                        <div class="brk-sc-card-horizontal__img-container d-flex align-items-center justify-content-center">
+                            <img src="{{>imagepath}}" alt="Trinity Image" class="brk-sc-card-horizontal__img b-t-l b-t-r" onclick="Productdetail('{{>designno}}')">
+                            @*{{if newdesign==1}}
+                                <div class="brk-sc-simple-card__label brk-bg-primary">
+                                    <span class="brk-white-font-color font__family-montserrat font__size-13 font__weight-bold line__height-14 text-uppercase">new</span> <span class="brk-sc-simple-card__label-left-top-angle brk-bg-primary"></span> <span class="brk-sc-simple-card__label-left-bottom-angle brk-bg-primary"></span> <span class="brk-sc-simple-card__label-bottom-angle"></span>
+                                </div>
+
+                                {{/if}}*@
+                            {{if newdesign==1}}
+                            <div class="brk-sc-card-labels brk-sc-card-labels_side-labels-cornered">
+                                <div class="brk-sc-card-label"><span class="brk-white-font-color font__family-montserrat font__size_11 font__weight-bold line__height-14 text-uppercase brk-sc-card-label__text">new</span> <span class="brk-sc-card-label__additional-1"></span> <span class="brk-sc-card-label__additional-2"></span> <span class="brk-sc-card-label__additional-3"></span></div>
+                            </div>
+                            {{/if}}
+                        </div>
+                        <div class="pt-10 flip-box__split-info mh-60">
+                            <div class="col-sm-12">
+                                <div class="brk-base-font-color font__family-montserrat font__size-17 font__weight-medium ptb">
+                                    {{if notpriceindiamond == 0}}
+                                    <span class="indianprice font__weight-semibold font__size-18" id="indianprice{{>designno}}"></span>
+                                    <input id="ipr{{>designno}}" type="hidden" value="{{>price}}" />
+                                    {{if oldprice != price}}
+                                    <span class="indianoldprice ld-price font__size-16 oldpricecss" id="indianoldprice{{>designno}}"></span>
+                                    <input id="iprold{{>designno}}" type="hidden" value="{{>oldprice}}" />
+                                    {{/if}}
+                                    {{/if}}
+                                    {{if notpriceindiamond > 0}}
+                                    <span class="" id="" style="font-size:14px;cursor:pointer" onclick="Productdetail('{{>designno}}')">More Details</span>
+                                    {{/if}}
+                                    <div class="txtctr" style="float:right">
+                                        <input id="toggle-heart{{>designno}}" class="toggle-heart" type="checkbox" style="display:contents" {{if iswish==1}} checked{{/if}} />
+                                        <label for="toggle-heart{{>designno}}" aria-label="like" id="wish{{>designno}}" onclick="addtowishlist('{{>designno}}')" class="wishaftereffect">❤</label>
+                                    </div>
+                                </div>
+
+                                <div class="brk-rating" data-brk-library="component__elements" style="width:41%">
+                                    <div class="brk-rating__layer"><i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i> <i class="fal fa-star brk-dark-font-color"></i></div>
+                                    <div class="brk-rating__imposition" style="width: {{>ratestar}}%">
+                                        <div class="visible">
+                                            <i class="fas fa-star y-clr"></i>
+                                            <i class="fas fa-star y-clr"></i>
+                                            <i class="fas fa-star y-clr"></i>
+                                            <i class="fas fa-star y-clr"></i>
+                                            <i class="fas fa-star y-clr"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </script>
+    <script id="Databindprice" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input class="" id="price{{>priceid}}" name="pricecheck" type="checkbox" value="{{>avgprice}}" onclick="ApplyFilterData({{>priceid}},'Price')">
+            <label class="brk-form-checkbox-label pricediv" for="price{{>priceid}}" id="lableprice{{>priceid}}">{{>avgprice}}</label>
+        </div>
+    </script>
+    <script id="Datametalweight" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input id="metalwtg{{>metalwtgid}}" name="metalweightcheck" type="checkbox" value="{{>weight}}" onclick="ApplyFilterData({{>metalwtgid}},'MetalWeight')">
+            <label class="brk-form-checkbox-label" for="metalwtg{{>metalwtgid}}" id="lablemetalweight{{>metalwtgid}}">{{>weight}}&nbsp;&nbsp;gm</label>
+        </div>
+    </script>
+    <script id="Datametalpurity" type="text/x-jsrender">
+        <li id="metalpurity{{>purity}}" class="metalpurity" value="{{>purity}}" onclick="ApplyFilterData('{{>purity}}','MetalPurity')">
+            <a href="javascript:void(0)" rel="tag" id="metalpurityatag{{>purity}}">{{>purity}}</a>
+        </li>
+    </script>
+    <script id="Datametalcolor" type="text/x-jsrender">
+        <li id="metalcolor{{>gcolor}}" class="metalcolor" value="{{>gcolor}}" onclick="ApplyFilterData('{{>gcolor}}','MetalColor')">
+            <a href="javascript:void(0)" rel="tag" id="metalcoloratag{{>gcolor}}">{{>gcolor}}</a>
+        </li>
+    </script>
+    <script id="Datadiamondshape" type="text/x-jsrender">
+        <div class="dvshape" id="divshape{{>shape}}" value="{{>shape}}" onclick="ApplyFilterData('{{>shape}}','Shape')">
+            <img src="{{>imgname}}" id="shapeimg{{>shape}}"><br>
+            <span id="shapename{{>shape}}">{{>shape}}</span>
+        </div>
+    </script>
+    <script id="Datadiamondweight" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input id="diamdwtg{{>dwtgid}}" name="diamondweightcheck" type="checkbox" value="{{>weight}}" onclick="ApplyFilterData({{>dwtgid}},'DiamondWeight')">
+            <label class="brk-form-checkbox-label" for="checkbox-strict-1" id="lablediamondweight{{>dwtgid}}">{{>weight}}&nbsp;&nbsp;cts</label>
+        </div>
+    </script>
+    <script id="MobileDatabindprice" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input class="" id="Mobileprice{{>priceid}}" name="Mobilepricecheck" type="checkbox" value="{{>avgprice}}" onclick="MobileApplyFilterData({{>priceid}},'Price')">
+            <label class="brk-form-checkbox-label Mobilepricediv" for="Mobileprice{{>priceid}}" id="Mobilelableprice{{>priceid}}">{{>avgprice}}</label>
+        </div>
+    </script>
+    <script id="MobileDatametalweight" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input id="Mobilemetalwtg{{>metalwtgid}}" name="Mobilemetalweightcheck" type="checkbox" value="{{>weight}}" onclick="MobileApplyFilterData({{>metalwtgid}},'MetalWeight')">
+            <label class="brk-form-checkbox-label" for="Mobilemetalwtg{{>metalwtgid}}" id="Mobilelablemetalweight{{>metalwtgid}}">{{>weight}}&nbsp;&nbsp;gm</label>
+        </div>
+    </script>
+    <script id="MobileDatametalpurity" type="text/x-jsrender">
+        <li id="Mobilemetalpurity{{>purity}}" class="Mobilemetalpurity" value="{{>purity}}" onclick="MobileApplyFilterData('{{>purity}}','MetalPurity')">
+            <a href="javascript:void(0)" rel="tag" id="Mobilemetalpurityatag{{>purity}}">{{>purity}}</a>
+        </li>
+    </script>
+    <script id="MobileDatametalcolor" type="text/x-jsrender">
+        <li id="Mobilemetalcolor{{>gcolor}}" class="Mobilemetalcolor" value="{{>gcolor}}" onclick="MobileApplyFilterData('{{>gcolor}}','MetalColor')">
+            <a href="javascript:void(0)" rel="tag" id="Mobilemetalcoloratag{{>gcolor}}">{{>gcolor}}</a>
+        </li>
+    </script>
+    <script id="MobileDatadiamondshape" type="text/x-jsrender">
+        <div class="Mobiledvshape" id="Mobiledivshape{{>shape}}" value="{{>shape}}" onclick="MobileApplyFilterData('{{>shape}}','Shape')">
+            <img src="{{>imgname}}" id="Mobileshapeimg{{>shape}}"><br>
+            <span id="Mobileshapename{{>shape}}">{{>shape}}</span>
+        </div>
+    </script>
+    <script id="MobileDatadiamondweight" type="text/x-jsrender">
+        <div class="col-xl-12 col-md-12 text-left">
+            <input id="Mobilediamdwtg{{>dwtgid}}" name="Mobilediamondweightcheck" type="checkbox" value="{{>weight}}" onclick="MobileApplyFilterData({{>dwtgid}},'DiamondWeight')">
+            <label class="brk-form-checkbox-label" for="checkbox-strict-1" id="Mobilelablediamondweight{{>dwtgid}}">{{>weight}}&nbsp;&nbsp;cts</label>
+        </div>
+    </script>
+}
